@@ -35,11 +35,12 @@
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Stock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvCart = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -86,6 +87,7 @@
             this.Stock});
             this.lvProduct.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvProduct.FullRowSelect = true;
+            this.lvProduct.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvProduct.Location = new System.Drawing.Point(16, 100);
             this.lvProduct.Margin = new System.Windows.Forms.Padding(4);
             this.lvProduct.Name = "lvProduct";
@@ -93,6 +95,7 @@
             this.lvProduct.TabIndex = 0;
             this.lvProduct.UseCompatibleStateImageBehavior = false;
             this.lvProduct.View = System.Windows.Forms.View.Details;
+            this.lvProduct.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvProduct_MouseDoubleClick);
             // 
             // Code
             // 
@@ -119,32 +122,36 @@
             this.Stock.Text = "Stock";
             this.Stock.Width = 72;
             // 
-            // listView1
+            // lvCart
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvCart.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
-            this.listView1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(547, 100);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(438, 314);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.columnHeader5,
+            this.columnHeader2});
+            this.lvCart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvCart.ForeColor = System.Drawing.Color.Teal;
+            this.lvCart.FullRowSelect = true;
+            this.lvCart.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvCart.Location = new System.Drawing.Point(547, 100);
+            this.lvCart.Margin = new System.Windows.Forms.Padding(4);
+            this.lvCart.Name = "lvCart";
+            this.lvCart.Size = new System.Drawing.Size(438, 314);
+            this.lvCart.TabIndex = 1;
+            this.lvCart.UseCompatibleStateImageBehavior = false;
+            this.lvCart.View = System.Windows.Forms.View.Details;
+            this.lvCart.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCart_MouseDoubleClick);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Code";
-            this.columnHeader1.Width = 91;
+            this.columnHeader1.Width = 83;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Name";
-            this.columnHeader3.Width = 151;
+            this.columnHeader3.Width = 118;
             // 
             // columnHeader4
             // 
@@ -155,6 +162,11 @@
             // 
             this.columnHeader5.Text = "Quantity";
             this.columnHeader5.Width = 72;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Sub Total";
+            this.columnHeader2.Width = 76;
             // 
             // panel1
             // 
@@ -175,7 +187,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lvProduct);
-            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.lvCart);
             this.panel1.Location = new System.Drawing.Point(6, 49);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1002, 567);
@@ -416,7 +428,7 @@
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader Price;
         private System.Windows.Forms.ColumnHeader Stock;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvCart;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -441,5 +453,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    public partial class InventoryTab : UserControl
+    public partial class sampleDialogbox : Form
     {
-
-        ProductService productService = new ProductService();
-
-        public InventoryTab()
+        public sampleDialogbox()
         {
             InitializeComponent();
         }
 
-        private void POSForm_Load(object sender, EventArgs e)
+        private void sampleDialogbox_Load(object sender, EventArgs e)
         {
-            productService.read(lvProduct);
+
         }
+
+       
     }
 }

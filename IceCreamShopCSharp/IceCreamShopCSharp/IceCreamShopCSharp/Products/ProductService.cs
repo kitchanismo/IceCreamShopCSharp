@@ -2,61 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.OleDb;    
+using System.Windows.Forms;
+using System.Data.OleDb;
+using kitchanismo;
 
 namespace IceCreamShopCSharp
 {
-    class ProductService : Connection
+    class ProductService : Products
     {
-       
-        public string productCode { get; set; }
-        public string productCategory { get; set; }
-        public string productName { get; set; }
-        public double productPrice { get; set; }
-        public int productStock { get; set; }
-        public DateTime productPurchased { get; set; }
+        public void read(ListView lv)
+        {
+            var reader = readProducts(ProductAction.Load);
+            mapItems(reader, lv);
+        }
 
-        protected OleDbDataReader readProducts(Product product)
-        {  
-            switch (product)
+        public void search(ListView lv)
+        {
+            var reader = readProducts(ProductAction.Search);
+            mapItems(reader, lv);
+        }
+
+        private void mapItems(OleDbDataReader _reader, ListView lv)
+        {
+            var cellStart = 1;
+
+            lv.Items.Clear();
+
+            while (_reader.Read())
             {
-                case Product.Load:
-                    query = loadQuery();
-                    break;
-                case Product.Search:
-                    query = searchQuery();
-                    break;
-                case Product.Insert:
-                    query = insertQuery();
-                    break;
+                ListViewItem with_1 = lv.Items.Add((_reader[cellStart]).ToString());
+
+                var len = lv.Columns.Count;
+
+                for (int i = cellStart + 1; i < len + cellStart; i++)
+                {
+                    with_1.SubItems.Add(_reader[i].ToString());
+                }
             }
-            return CommandReader(query);
-        }
 
-        private string searchQuery()
-        {
-            var key = "'%" + productName.ToLower() + "%'";
-            return "select * from tblproducts where productName like " + key + " order by id";
+            var shared = new Shared();
+            shared.doChangeForeColor(lv);
         }
-
-        private string loadQuery()
-        {
-            return "select * from tblproducts order by id";
-        }
-
-        private string insertQuery()
-        {
-            var _query = "insert into tblproducts (productCode,productCategory,productName,productPrice,productStock,datePurchased)";
-            var _values = " values ('" + productCode + "','" + productCategory + "','" + productName + "'," + productPrice + "," + productStock + "," + productPurchased + ")";
-            return _query + _values;
-        }
-
- 
-    }
-    enum Product
-    {
-        Load,
-        Search,
-        Insert
     }
 }

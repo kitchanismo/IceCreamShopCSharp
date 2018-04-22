@@ -1,27 +1,13 @@
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.MainForm.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Properties.Resources.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.exe
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csprojResolveAssemblyReference.cache
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.InventoryForm.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SalesForm.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.dll
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.xml
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POSForm.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.exe
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.pdb
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.xml
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csprojResolveAssemblyReference.cache
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.MainForm.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Properties.Resources.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POSTab.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SalesTab.resources
-C:\Users\Betsayda\Desktop\IceCreamShopCSharp (2)\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.InventoryTab.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.exe
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.pdb
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.pdb
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.xml
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.sampleDialogbox.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POSTab.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SalesTab.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.InventoryTab.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.MainForm.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Properties.Resources.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb

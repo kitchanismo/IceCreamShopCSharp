@@ -11,7 +11,9 @@ namespace IceCreamShopCSharp
 {
     public partial class POSTab : UserControl
     {
-        Products products = new Products();
+
+        ProductService productService = new ProductService();
+        SalesService salesService = new SalesService();
 
         public POSTab()
         {
@@ -20,24 +22,55 @@ namespace IceCreamShopCSharp
 
         private void POSForm_Load(object sender, EventArgs e)
         {
-            products.read(lvProduct);
+            productService.read(lvProduct);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            products.productName = txtSearch.Text;
-            products.search(lvProduct);
+            productService.productName = txtSearch.Text;
+            productService.search(lvProduct);
         }
 
-        private void lvProduct_MouseDoubleClick(object sender, EventArgs e)
+        private void initProducts() 
         {
-            ListViewItem with = lvProduct.Items[0];
-            products.productCode =  with.SubItems[0].Text;
-            products.productCategory = with.SubItems[1].Text;
-            products.productName = with.SubItems[2].Text;
-            products.productPrice = double.Parse(with.SubItems[3].Text);
-            products.productStock = int.Parse(with.SubItems[4].Text);
-            
+         
+        }
+
+        private void lvProduct_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //assign
+            foreach (ListViewItem item in lvProduct.SelectedItems)
+            {
+                salesService.productCode = item.SubItems[0].Text;
+                salesService.productCategory = item.SubItems[1].Text;
+                salesService.productName = item.SubItems[2].Text;
+                salesService.productPrice = double.Parse(item.SubItems[3].Text);
+                salesService.productStock = int.Parse(item.SubItems[4].Text);
+            } 
+
+            //validate if stock is zero
+            if (salesService.productStock <= 0)
+            {
+                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //do transaction
+            salesService.addCart(lvCart);
+        }
+
+        private void lvCart_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //assign
+            foreach (ListViewItem item in lvCart.SelectedItems)
+            {
+                salesService.productCode = item.SubItems[0].Text;
+                salesService.productName = item.SubItems[1].Text;
+                salesService.productPrice = double.Parse(item.SubItems[2].Text);
+                salesService.productQuantity = int.Parse(item.SubItems[3].Text);
+            }
+
+            salesService.returnProduct(lvCart);
         }
 
     }

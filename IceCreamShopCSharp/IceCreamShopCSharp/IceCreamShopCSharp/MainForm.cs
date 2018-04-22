@@ -88,6 +88,11 @@ namespace IceCreamShopCSharp
 
         }
 
+        private void pointOfSale1_Load(object sender, EventArgs e)
+        {
+
+        }
+
     
     }
 }

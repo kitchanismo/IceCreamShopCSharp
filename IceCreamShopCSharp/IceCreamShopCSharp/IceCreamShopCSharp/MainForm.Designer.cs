@@ -69,7 +69,7 @@
             this.accentbar.BackColor = System.Drawing.Color.Teal;
             this.accentbar.Location = new System.Drawing.Point(895, 66);
             this.accentbar.Name = "accentbar";
-            this.accentbar.Size = new System.Drawing.Size(120, 5);
+            this.accentbar.Size = new System.Drawing.Size(120, 6);
             this.accentbar.TabIndex = 4;
             // 
             // lblBrandName
@@ -197,6 +197,7 @@
             this.pointOfSale1.Name = "pointOfSale1";
             this.pointOfSale1.Size = new System.Drawing.Size(1022, 573);
             this.pointOfSale1.TabIndex = 0;
+            this.pointOfSale1.Load += new System.EventHandler(this.pointOfSale1_Load);
             // 
             // inventoryForm1
             // 

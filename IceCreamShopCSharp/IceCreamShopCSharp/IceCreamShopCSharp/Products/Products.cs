@@ -2,46 +2,78 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.OleDb;    
+using kitchanismo;
 using System.Windows.Forms;
-using System.Data.OleDb;
 
 namespace IceCreamShopCSharp
 {
-    class Products: ProductService
+    class Products : Connection
     {
-        public void read(ListView lv)
-        {
-            var reader = readProducts(Product.Load);
-            mapData(reader, lv);
-        }
 
-        public void search(ListView lv)
-        {
-            var reader = readProducts(Product.Search);
-            mapData(reader, lv);
-        }
+        public int productQuantity { get; set; }
+        public string productCode { get; set; }
+        public string productCategory { get; set; }
+        public string productName { get; set; }
+        public double productPrice { get; set; }
+        public int productStock { get; set; }
+        public DateTime productPurchased { get; set; }
 
-        void mapData(OleDbDataReader _reader, ListView lv) 
-        {
-            var cellStart = 1;
-
-            lv.Items.Clear();
-
-            while (_reader.Read())
+        protected OleDbDataReader readProducts(ProductAction product)
+        {  
+            switch (product)
             {
-                ListViewItem with_1 = lv.Items.Add((_reader[cellStart]).ToString());
-
-                var len = lv.Columns.Count;
-
-                for (int i = cellStart + 1; i < len + cellStart; i++)
-                {
-                    with_1.SubItems.Add(_reader[i].ToString());
-                }
+                case ProductAction.Load:
+                    query = loadQuery();
+                    break;
+                case ProductAction.Search:
+                    query = searchQuery();
+                    break;
+                case ProductAction.Insert:
+                    query = insertQuery();
+                    break;
             }
-
-            //change foreColor
-            var shared = new Shared();
-            shared.doChangeForeColor(lv);
+            return CommandReader(query);
         }
+
+        private string searchQuery()
+        {
+            var key = "'%" + productName.ToLower() + "%'";
+            return "select * from tblproducts where productName like " + key + " order by id";
+        }
+
+        private string loadQuery()
+        {
+            return "select * from tblproducts order by id";
+        }
+
+        private string insertQuery()
+        {
+            var _query = "insert into tblproducts (productCode,productCategory,productName,productPrice,productStock,datePurchased)";
+            var _values = " values ('" + productCode + "','" + productCategory + "','" + productName + "'," + productPrice + "," + productStock + "," + productPurchased + ")";
+            return _query + _values;
+        }
+
+        public int getStock(string _prodCode)
+        {
+           query = "select productStock from tblproducts where productCode = '" + _prodCode +"'";
+           var reader = CommandReader(query);
+            reader.Read();
+            if (reader.HasRows)
+            {
+                return  int.Parse(reader[0].ToString());
+            }
+            else
+            {
+                return 0;
+            }
+        }
+ 
     }
+    enum ProductAction
+    {
+        Load,
+        Search,
+        Insert
+    }  
 }

@@ -53,14 +53,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="CustomInputBox.cs" />
+    <Compile Include="Sales\SalesService.cs" />
+    <Compile Include="sampleDialogbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sampleDialogbox.Designer.cs">
+      <DependentUpon>sampleDialogbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tabs\POSTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Tabs\POSTab.Designer.cs">
       <DependentUpon>POSTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\Products.cs" />
     <Compile Include="Products\ProductService.cs" />
+    <Compile Include="Products\Products.cs" />
     <Compile Include="Tabs\SalesTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,10 +94,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Sales\SalesService.cs" />
+    <Compile Include="Sales\Sales.cs" />
     <Compile Include="Shared.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="sampleDialogbox.resx">
+      <DependentUpon>sampleDialogbox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tabs\POSTab.resx">
       <DependentUpon>POSTab.cs</DependentUpon>
     </EmbeddedResource>
