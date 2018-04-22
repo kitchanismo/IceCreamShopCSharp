@@ -31,14 +31,9 @@ namespace IceCreamShopCSharp
             productService.search(lvProduct);
         }
 
-        private void initProducts() 
-        {
-         
-        }
-
         private void lvProduct_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //assign
+            
             foreach (ListViewItem item in lvProduct.SelectedItems)
             {
                 salesService.productCode = item.SubItems[0].Text;
@@ -48,20 +43,12 @@ namespace IceCreamShopCSharp
                 salesService.productStock = int.Parse(item.SubItems[4].Text);
             } 
 
-            //validate if stock is zero
-            if (salesService.productStock <= 0)
-            {
-                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            //do transaction
             salesService.addCart(lvCart);
         }
 
         private void lvCart_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //assign
+            
             foreach (ListViewItem item in lvCart.SelectedItems)
             {
                 salesService.productCode = item.SubItems[0].Text;

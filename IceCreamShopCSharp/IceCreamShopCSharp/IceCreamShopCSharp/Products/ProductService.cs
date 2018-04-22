@@ -40,7 +40,7 @@ namespace IceCreamShopCSharp
                 }
             }
 
-            var shared = new Shared();
+            var shared = new SharedFunctions();
             shared.doChangeForeColor(lv);
         }
     }

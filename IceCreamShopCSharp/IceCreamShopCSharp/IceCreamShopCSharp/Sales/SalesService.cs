@@ -14,6 +14,12 @@ namespace IceCreamShopCSharp
         public void addCart(ListView lv)
         {
 
+            if (productStock <= 0)
+            {
+                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var inputBox = new CustomInputBox();
             var description = "Product: " + productName + "\nPrice: " + productPrice;
 
@@ -34,7 +40,6 @@ namespace IceCreamShopCSharp
 
             double subTotal = productPrice * inputBox.quantity;
 
-            //add qty and subtotal
             updateCartItem(lv, inputBox.quantity, subTotal);
         }
 
@@ -53,13 +58,10 @@ namespace IceCreamShopCSharp
 
             var newSubtotal = inputBox.quantity * productPrice;
 
-            //subtract qty and subtotal
             updateCartItem(lv, -inputBox.quantity, -newSubtotal);
         }
 
-
         //private methods
-
 
         private int getQtyInCart(ListView lv, int _quantity)
         {
@@ -104,7 +106,14 @@ namespace IceCreamShopCSharp
             }
             else
             {
-                string[] row = { productCode, productName, productPrice.ToString(), _quantity.ToString(), _subTotal.ToString() };
+                string[] row = { 
+                      productCode, 
+                      productName, 
+                      productPrice.ToString(),
+                      _quantity.ToString(), 
+                      _subTotal.ToString() 
+                };
+
                 var listViewItem = new ListViewItem(row);
                 lv.Items.Add(listViewItem);
             }

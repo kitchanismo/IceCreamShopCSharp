@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Drawing;
 namespace IceCreamShopCSharp
 {
-    class Shared
+    class SharedFunctions
     {
         public void doChangeForeColor(ListView lv)
         {
