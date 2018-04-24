@@ -131,7 +131,7 @@
             this.columnHeader5,
             this.columnHeader2});
             this.lvCart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvCart.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lvCart.ForeColor = System.Drawing.Color.Teal;
             this.lvCart.FullRowSelect = true;
             this.lvCart.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvCart.Location = new System.Drawing.Point(547, 100);
