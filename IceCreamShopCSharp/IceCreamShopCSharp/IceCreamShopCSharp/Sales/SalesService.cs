@@ -8,7 +8,7 @@ using kitchanismo;
 
 namespace IceCreamShopCSharp
 {
-    class SalesService : Products
+    class SalesService : Product
     {
         SharedGlobal shared = new SharedGlobal();
           
@@ -25,34 +25,34 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            var _inputQuantity = getQtyFromInputBox();
+            var _inputedQuantity = getQtyFromInputBox();
 
-            if (_inputQuantity == 0)
+            if (_inputedQuantity == 0)
             {
                 return;
             }
 
-            var computedQty = getQtyInCart(lv, _inputQuantity);
+            var computedQty = getQtyInCart(lv, _inputedQuantity);
 
-            if (productStock < computedQty || _inputQuantity > computedQty)
+            if (productStock < computedQty || _inputedQuantity > computedQty)
             {
                 shared.dimEnabled(true);
-                MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There is no enough stock! \n\nQuantity ordered: " + productStock.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 shared.dimEnabled(false);
                 return;
             }
 
-            double subTotal = productPrice * _inputQuantity;
+            double subTotal = productPrice * _inputedQuantity;
 
-            updateCartItem(lv, _inputQuantity, subTotal);
+            updateCartItem(lv, _inputedQuantity, subTotal);
         }
 
         //minus quantity and subtotal into listview Cart 
         public void returnProduct(ListView lv)
         {
-            var _inputQuantity = getQtyFromInputBox();
+            var _inputedQuantity = getQtyFromInputBox();
 
-            if (_inputQuantity > productQuantity)
+            if (_inputedQuantity > productQuantity)
             {
                 shared.dimEnabled(true);
                 MessageBox.Show("Quantity return is more than quantity ordered!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -60,9 +60,9 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            var newSubtotal = _inputQuantity * productPrice;
+            var newSubtotal = _inputedQuantity * productPrice;
 
-            updateCartItem(lv, -_inputQuantity, -newSubtotal);
+            updateCartItem(lv, -_inputedQuantity, -newSubtotal);
         }
 
 //private methods

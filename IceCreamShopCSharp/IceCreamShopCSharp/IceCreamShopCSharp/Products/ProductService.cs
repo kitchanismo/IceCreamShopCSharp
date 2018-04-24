@@ -8,7 +8,7 @@ using kitchanismo;
 
 namespace IceCreamShopCSharp
 {
-    class ProductService : Products
+    class ProductService : Product
     {
         SharedGlobal shared = new SharedGlobal();
             

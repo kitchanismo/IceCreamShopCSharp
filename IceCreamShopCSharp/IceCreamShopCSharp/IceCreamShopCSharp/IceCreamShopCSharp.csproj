@@ -52,15 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
-    <Compile Include="CustomInputBox.cs" />
+    <Compile Include="Connections\Connection.cs" />
+    <Compile Include="Shared\CustomInputBox.cs" />
     <Compile Include="Sales\SalesService.cs" />
-    <Compile Include="sampleDialogbox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="sampleDialogbox.Designer.cs">
-      <DependentUpon>sampleDialogbox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tabs\POSTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,7 +62,7 @@
       <DependentUpon>POSTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\ProductService.cs" />
-    <Compile Include="Products\Products.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Tabs\SalesTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,18 +89,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sales.cs" />
-    <Compile Include="SharedGlobal.cs" />
-    <Compile Include="transparentForm.cs">
+    <Compile Include="Shared\SharedGlobal.cs" />
+    <Compile Include="Shared\transparentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="transparentForm.Designer.cs">
+    <Compile Include="Shared\transparentForm.Designer.cs">
       <DependentUpon>transparentForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="sampleDialogbox.resx">
-      <DependentUpon>sampleDialogbox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tabs\POSTab.resx">
       <DependentUpon>POSTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,7 +114,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="transparentForm.resx">
+    <EmbeddedResource Include="Shared\transparentForm.resx">
       <DependentUpon>transparentForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

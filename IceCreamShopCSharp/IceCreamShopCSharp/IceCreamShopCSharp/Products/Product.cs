@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    class Products : Connection
+    class Product : Connection
     {
 
         public int productQuantity { get; set; }
