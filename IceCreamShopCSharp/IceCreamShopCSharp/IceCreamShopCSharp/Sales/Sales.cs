@@ -14,6 +14,5 @@ namespace IceCreamShopCSharp
         public int productQuantity { get; set; }
         public DateTime datePurchased { get; set; }
 
-
     }
 }

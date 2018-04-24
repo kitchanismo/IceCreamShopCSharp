@@ -11,3 +11,5 @@ C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamS
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csprojResolveAssemblyReference.cache
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.transparentForm.resources

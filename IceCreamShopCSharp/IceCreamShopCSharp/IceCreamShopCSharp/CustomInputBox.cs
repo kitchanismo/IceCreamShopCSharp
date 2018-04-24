@@ -64,6 +64,7 @@ namespace IceCreamShopCSharp
 
         public DialogResult Show(int input, string description = "")
         {
+           
             System.Drawing.Size size = new System.Drawing.Size(237, 125);
             lblDescription.AutoSize = true;
             lblDescription.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,7 +145,12 @@ namespace IceCreamShopCSharp
             txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(txtQuantity_KeyDown);
             inputBox.FormClosing += new System.Windows.Forms.FormClosingEventHandler(inputBox_FormClosing);
 
+
+            SharedGlobal shared = new SharedGlobal();
+            shared.dimEnabled(true);
             DialogResult result = inputBox.ShowDialog();
+            shared.dimEnabled(false);
+
             return result;
         }
     }

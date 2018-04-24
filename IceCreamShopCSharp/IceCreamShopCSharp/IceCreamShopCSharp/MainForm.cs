@@ -13,7 +13,7 @@ namespace IceCreamShopCSharp
     public partial class MainForm : Form
     {
         Kitchanismo chan;
-        private int speed = 950;
+        private int speed;
 
         public MainForm()
         {
@@ -21,6 +21,7 @@ namespace IceCreamShopCSharp
             InitializeComponent();
             dockFill();
             panelPOS.BringToFront();
+            speed = 950;
             TProperties.initLocation();
         }
 
@@ -64,7 +65,6 @@ namespace IceCreamShopCSharp
 
         private void btnSales_Click(object sender, EventArgs e)
         {
-
             doTransition(panelSales);
             moveAccentBar(btnSales);
         }

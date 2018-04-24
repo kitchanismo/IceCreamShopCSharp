@@ -10,59 +10,76 @@ namespace IceCreamShopCSharp
 {
     class SalesService : Products
     {
-       
+        SharedGlobal shared = new SharedGlobal();
+          
+        //quantity inputed validations 
+        //if input qty is valid then either update qty or add row
         public void addCart(ListView lv)
         {
 
             if (productStock <= 0)
             {
-                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                shared.dimEnabled(true);
+                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                shared.dimEnabled(false);
                 return;
             }
 
-            var inputBox = new CustomInputBox();
-            var description = "Product: " + productName + "\nPrice: " + productPrice;
+            var _inputQuantity = getQtyFromInputBox();
 
-            inputBox.Show(1, description);
-
-            if (inputBox.quantity == 0)
+            if (_inputQuantity == 0)
             {
                 return;
             }
 
-            var computedQty = getQtyInCart(lv, inputBox.quantity);
+            var computedQty = getQtyInCart(lv, _inputQuantity);
 
-            if (productStock < computedQty || inputBox.quantity > computedQty)
+            if (productStock < computedQty || _inputQuantity > computedQty)
             {
-                MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                shared.dimEnabled(true);
+                MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                shared.dimEnabled(false);
                 return;
             }
 
-            double subTotal = productPrice * inputBox.quantity;
+            double subTotal = productPrice * _inputQuantity;
 
-            updateCartItem(lv, inputBox.quantity, subTotal);
+            updateCartItem(lv, _inputQuantity, subTotal);
         }
 
+        //minus quantity and subtotal into listview Cart 
         public void returnProduct(ListView lv)
+        {
+            var _inputQuantity = getQtyFromInputBox();
+
+            if (_inputQuantity > productQuantity)
+            {
+                shared.dimEnabled(true);
+                MessageBox.Show("Quantity return is more than quantity ordered!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                shared.dimEnabled(false);
+                return;
+            }
+
+            var newSubtotal = _inputQuantity * productPrice;
+
+            updateCartItem(lv, -_inputQuantity, -newSubtotal);
+        }
+
+//private methods
+
+        //show input box then return tha value inputed
+        private int getQtyFromInputBox()
         {
             var inputBox = new CustomInputBox();
             var description = "Product: " + productName + "\nPrice: " + productPrice;
-
+           
             inputBox.Show(1, description);
-
-            if (inputBox.quantity > productQuantity)
-            {
-                MessageBox.Show("Quantity return is more than quantity ordered!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var newSubtotal = inputBox.quantity * productPrice;
-
-            updateCartItem(lv, -inputBox.quantity, -newSubtotal);
+            return inputBox.quantity;
         }
 
-        //private methods
-
+        //if item is not in cart list then return the current stock
+        //else get the qty of the selected product in cart list
+        //get the sum of qty inputed and qty in cart list then return
         private int getQtyInCart(ListView lv, int _quantity)
         {
             var index = new IndexRow();
@@ -82,6 +99,9 @@ namespace IceCreamShopCSharp
             }
         }
 
+        //update(add, minus) cart qty and subtotal
+        //if product is existed in cart list then update qty and subtotal
+        //else add another row to cart list
         private void updateCartItem(ListView lv, int _quantity, double _subTotal)
         {
             var index = new IndexRow();
@@ -116,6 +136,22 @@ namespace IceCreamShopCSharp
 
                 var listViewItem = new ListViewItem(row);
                 lv.Items.Add(listViewItem);
+            }
+        }
+
+        //dead code
+        public int getStock()
+        {
+            var reader = readProducts(ProductAction.GetStock);
+
+            reader.Read();
+            if (reader.HasRows)
+            {
+                return int.Parse(reader[0].ToString());
+            }
+            else
+            {
+                return 0;
             }
         }
 

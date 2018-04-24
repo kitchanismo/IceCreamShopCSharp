@@ -42,7 +42,6 @@ namespace IceCreamShopCSharp
                 salesService.productPrice = double.Parse(item.SubItems[3].Text);
                 salesService.productStock = int.Parse(item.SubItems[4].Text);
             } 
-
             salesService.addCart(lvCart);
         }
 

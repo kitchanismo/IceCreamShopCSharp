@@ -95,7 +95,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sales.cs" />
-    <Compile Include="Shared.cs" />
+    <Compile Include="SharedGlobal.cs" />
+    <Compile Include="transparentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="transparentForm.Designer.cs">
+      <DependentUpon>transparentForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sampleDialogbox.resx">
@@ -116,6 +122,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="transparentForm.resx">
+      <DependentUpon>transparentForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

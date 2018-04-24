@@ -19,9 +19,10 @@ namespace IceCreamShopCSharp
         public int productStock { get; set; }
         public DateTime productPurchased { get; set; }
 
-        protected OleDbDataReader readProducts(ProductAction product)
-        {  
-            switch (product)
+        //just return DataReader to Data Services
+        protected OleDbDataReader readProducts(ProductAction productAction)
+        {
+            switch (productAction)
             {
                 case ProductAction.Load:
                     query = loadQuery();
@@ -31,6 +32,9 @@ namespace IceCreamShopCSharp
                     break;
                 case ProductAction.Insert:
                     query = insertQuery();
+                    break;
+                case ProductAction.GetStock:
+                    query = getStockQuery();
                     break;
             }
             return CommandReader(query);
@@ -54,26 +58,18 @@ namespace IceCreamShopCSharp
             return _query + _values;
         }
 
-        public int getStock(string _prodCode)
+        private string getStockQuery()
         {
-           query = "select productStock from tblproducts where productCode = '" + _prodCode +"'";
-           var reader = CommandReader(query);
-            reader.Read();
-            if (reader.HasRows)
-            {
-                return  int.Parse(reader[0].ToString());
-            }
-            else
-            {
-                return 0;
-            }
+            return "select productStock from tblproducts where productCode = '" + productCode + "'";
         }
  
     }
+
     enum ProductAction
     {
         Load,
         Search,
-        Insert
+        Insert,
+        GetStock
     }  
 }
