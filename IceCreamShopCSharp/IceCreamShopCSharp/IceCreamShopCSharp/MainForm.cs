@@ -12,20 +12,22 @@ namespace IceCreamShopCSharp
 {
     public partial class MainForm : Form
     {
-        Kitchanismo chan;
-        private int speed;
-
+        Kitchanismo chan = new Kitchanismo();
+   
         public MainForm()
         {
-            chan = new Kitchanismo();
             InitializeComponent();
-            dockFill();
+            onInit();
+        }
+
+        private void onInit()
+        {
             panelPOS.BringToFront();
-            speed = 950;
+            dockFill();
             TProperties.initLocation();
         }
 
-        void dockFill()
+        private void dockFill()
         {
             pointOfSale1.Dock   = DockStyle.Fill;
             inventoryForm1.Dock = DockStyle.Fill;
@@ -41,7 +43,7 @@ namespace IceCreamShopCSharp
             TProperties.nav4  = new Panel();
             TProperties.nav5  = new Panel();
             TProperties.loc   = 0;
-            TProperties.speed = speed;
+            TProperties.speed = 800;
             TProperties.ease  = IEasing.quintinout;
         }
 
@@ -59,7 +61,7 @@ namespace IceCreamShopCSharp
         private void doTransition(Control target)
         {
             initTransition(target);
-            chan.y_wipe(false);   
+            chan.y_wipe(true);   
             panelWrapper.BackColor = target.BackColor;
         }
 
@@ -71,26 +73,14 @@ namespace IceCreamShopCSharp
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-         
             doTransition(panelInventory);
             moveAccentBar(btnInventory);
         }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
-           
             doTransition(panelPOS);
             moveAccentBar(btnPOS);
-        }
-
-        private void panelPOS_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pointOfSale1_Load(object sender, EventArgs e)
-        {
-
         }
 
     

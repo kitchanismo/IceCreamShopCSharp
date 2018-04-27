@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connections\Connection.cs" />
-    <Compile Include="Shared\CustomInputBox.cs" />
+    <Compile Include="Helper\CustomInputBox.cs" />
     <Compile Include="Sales\SalesService.cs" />
     <Compile Include="Tabs\POSTab.cs">
       <SubType>UserControl</SubType>
@@ -89,11 +89,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sales.cs" />
-    <Compile Include="Shared\SharedGlobal.cs" />
-    <Compile Include="Shared\transparentForm.cs">
+    <Compile Include="Helper\Helper.cs" />
+    <Compile Include="Helper\transparentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shared\transparentForm.Designer.cs">
+    <Compile Include="Helper\transparentForm.Designer.cs">
       <DependentUpon>transparentForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -114,7 +114,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shared\transparentForm.resx">
+    <EmbeddedResource Include="Helper\transparentForm.resx">
       <DependentUpon>transparentForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

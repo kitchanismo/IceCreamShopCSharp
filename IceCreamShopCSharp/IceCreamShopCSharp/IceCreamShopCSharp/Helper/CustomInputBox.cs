@@ -62,7 +62,7 @@ namespace IceCreamShopCSharp
             }
         }
 
-        public DialogResult Show(int input, string description = "")
+        public DialogResult Show(int input, string description = "", string title= "ENTER QUANTITY")
         {
            
             System.Drawing.Size size = new System.Drawing.Size(237, 125);
@@ -107,6 +107,7 @@ namespace IceCreamShopCSharp
             txtQuantity.TabIndex = 5;
             txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             txtQuantity.Text = input.ToString();
+            txtQuantity.ForeColor = System.Drawing.Color.Teal;
 
            
             // btnPurchase
@@ -116,7 +117,7 @@ namespace IceCreamShopCSharp
             okButton.ForeColor = System.Drawing.Color.Teal;
             okButton.Location = new System.Drawing.Point(249, 22);
             okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(94, 39);
+            okButton.Size = new System.Drawing.Size(94, 42);
             okButton.TabIndex = 9;
             okButton.Text = "OK";
             okButton.UseVisualStyleBackColor = false;
@@ -125,9 +126,9 @@ namespace IceCreamShopCSharp
             cancelButton.BackColor = System.Drawing.Color.White;
             cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             cancelButton.ForeColor = System.Drawing.Color.Crimson;
-            cancelButton.Location = new System.Drawing.Point(249, 67);
+            cancelButton.Location = new System.Drawing.Point(249, 69);
             cancelButton.Name = "button1";
-            cancelButton.Size = new System.Drawing.Size(94, 39);
+            cancelButton.Size = new System.Drawing.Size(94, 37);
             cancelButton.TabIndex = 10;
             cancelButton.Text = "CANCEL";
             cancelButton.UseVisualStyleBackColor = false;
@@ -144,9 +145,9 @@ namespace IceCreamShopCSharp
             txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(txtQuantity_KeyPress);
             txtQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(txtQuantity_KeyDown);
             inputBox.FormClosing += new System.Windows.Forms.FormClosingEventHandler(inputBox_FormClosing);
+            label1.Text = title;
 
-
-            SharedGlobal shared = new SharedGlobal();
+            Helper shared = new Helper();
             shared.dimEnabled(true);
             DialogResult result = inputBox.ShowDialog();
             shared.dimEnabled(false);

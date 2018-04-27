@@ -5,75 +5,140 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using kitchanismo;
+using System.Drawing;
 
 namespace IceCreamShopCSharp
 {
-    class SalesService : Product
+    class SalesService : Sales
     {
-        SharedGlobal shared = new SharedGlobal();
+        Helper helper = new Helper();
           
         //quantity inputed validations 
         //if input qty is valid then either update qty or add row
-        public void addCart(ListView lv)
+        public void addToCart(ListView lv)
         {
 
             if (productStock <= 0)
             {
-                shared.dimEnabled(true);
+                helper.dimEnabled(true);
                 MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                shared.dimEnabled(false);
+                helper.dimEnabled(false);
                 return;
             }
 
-            var _inputedQuantity = getQtyFromInputBox();
+            var inputedQuantity = getQtyFromInputBox("ADD QUANTITY");
 
-            if (_inputedQuantity == 0)
+            if (inputedQuantity == 0)
             {
                 return;
             }
 
-            var computedQty = getQtyInCart(lv, _inputedQuantity);
+            var computedQty = getQtyInCart(lv, inputedQuantity);
 
-            if (productStock < computedQty || _inputedQuantity > computedQty)
+            if (productStock < computedQty || inputedQuantity > computedQty)
             {
-                shared.dimEnabled(true);
-                MessageBox.Show("There is no enough stock! \n\nQuantity ordered: " + productStock.ToString(), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                shared.dimEnabled(false);
+                helper.dimEnabled(true);
+                MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                helper.dimEnabled(false);
                 return;
             }
 
-            double subTotal = productPrice * _inputedQuantity;
+            double subTotal = productPrice * inputedQuantity;
 
-            updateCartItem(lv, _inputedQuantity, subTotal);
+            updateCartItem(lv, inputedQuantity, subTotal);
         }
 
         //minus quantity and subtotal into listview Cart 
-        public void returnProduct(ListView lv)
+        public void removeProductToCart(ListView lv)
         {
-            var _inputedQuantity = getQtyFromInputBox();
+            var inputedQuantity = getQtyFromInputBox("REMOVE QUANTITY");
 
-            if (_inputedQuantity > productQuantity)
+            if (inputedQuantity > productQuantity)
             {
-                shared.dimEnabled(true);
-                MessageBox.Show("Quantity return is more than quantity ordered!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                shared.dimEnabled(false);
+                helper.dimEnabled(true);
+                MessageBox.Show("Quantity remove is higher!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                helper.dimEnabled(false);
                 return;
             }
 
-            var newSubtotal = _inputedQuantity * productPrice;
+            var newSubtotal = inputedQuantity * productPrice;
 
-            updateCartItem(lv, -_inputedQuantity, -newSubtotal);
+            updateCartItem(lv, -inputedQuantity, -newSubtotal);
         }
 
-//private methods
+
+        public string generateNewOR()
+        {
+            var ORno = "";
+            var reader = readSales(SalesAction.ReadOR);
+            reader.Read();
+            try 
+	        {	        
+		         ORno = (int.Parse(reader[0].ToString().Substring(3)) + 1).ToString();
+                 return "OR-" + ORno; 
+	        }
+	        catch
+	        {
+		        return "OR-1000";
+	        } 
+        }
+
+        public double computeChange()
+        {
+            string[] inputs = { cash, total };
+
+            if (helper.IsEmpty(inputs))
+            {
+                
+                return 0.00;
+            }
+
+            var _total = double.Parse(total);
+            var _cash = double.Parse(cash);
+
+            if (_total > _cash || _total == 0)
+            {
+                return 0.00;
+            }
+            else
+            {
+                var change = _cash - _total;
+                return change;
+            }
+        }
+
+        public Color changeCashForeColor()
+        {
+            string[] inputs = { cash, total };
+            if (helper.IsEmpty(inputs))
+            {
+                return Color.Crimson;
+            }
+            
+            var _total = double.Parse(total);
+            var _cash = double.Parse(cash);
+
+            if (_total > _cash)
+            {
+                return Color.Crimson;
+            }
+            else
+            {
+                return Color.Lime;
+            }
+        }
+
+
+        //private methods
+       
 
         //show input box then return tha value inputed
-        private int getQtyFromInputBox()
+        private int getQtyFromInputBox(string title)
         {
             var inputBox = new CustomInputBox();
             var description = "Product: " + productName + "\nPrice: " + productPrice;
            
-            inputBox.Show(1, description);
+            inputBox.Show(1, description, title);
             return inputBox.quantity;
         }
 
@@ -138,6 +203,7 @@ namespace IceCreamShopCSharp
                 lv.Items.Add(listViewItem);
             }
         }
+
 
         //dead code
         public int getStock()

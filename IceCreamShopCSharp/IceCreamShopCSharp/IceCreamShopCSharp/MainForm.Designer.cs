@@ -168,7 +168,6 @@
             this.panelPOS.Name = "panelPOS";
             this.panelPOS.Size = new System.Drawing.Size(1022, 625);
             this.panelPOS.TabIndex = 1;
-            this.panelPOS.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPOS_Paint);
             // 
             // panelInventory
             // 
@@ -197,7 +196,6 @@
             this.pointOfSale1.Name = "pointOfSale1";
             this.pointOfSale1.Size = new System.Drawing.Size(1022, 573);
             this.pointOfSale1.TabIndex = 0;
-            this.pointOfSale1.Load += new System.EventHandler(this.pointOfSale1_Load);
             // 
             // inventoryForm1
             // 

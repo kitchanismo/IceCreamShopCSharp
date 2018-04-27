@@ -10,7 +10,7 @@ namespace IceCreamShopCSharp
 {
     class ProductService : Product
     {
-        SharedGlobal shared = new SharedGlobal();
+        Helper shared = new Helper();
             
         public void read(ListView lv)
         {
