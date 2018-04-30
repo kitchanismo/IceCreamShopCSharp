@@ -13,8 +13,8 @@ namespace IceCreamShopCSharp
     {
 
         ProductService productService = new ProductService();
-        SalesService salesService = new SalesService();
-        Helper helper = new Helper();
+        SalesService salesService     = new SalesService();
+        Helper helper                 = new Helper();
 
         public POSTab()
         {

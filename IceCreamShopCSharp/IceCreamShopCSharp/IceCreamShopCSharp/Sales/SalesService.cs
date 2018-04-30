@@ -128,7 +128,6 @@ namespace IceCreamShopCSharp
             }
         }
 
-
         //private methods
        
 
