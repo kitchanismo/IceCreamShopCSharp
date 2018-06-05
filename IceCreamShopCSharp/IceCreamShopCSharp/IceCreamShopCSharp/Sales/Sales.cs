@@ -10,13 +10,13 @@ namespace IceCreamShopCSharp
     class Sales: Product
     {
 
-        public string ORno { get; set; }
-        public string customerName { get; set; }
-        public double productSubTotal { get; set; }
-        public double productTotal { get; set; }
-        public double productChange { get; set; }
-        public string total { get; set; }
-        public string cash { get; set; }
+        public string   orNum { get; set; }
+        public string   customerName { get; set; }
+        public double   subTotal { get; set; }
+        public double   total { get; set; }
+        public double   change { get; set; }
+        public int      quantity { get; set; }
+        public double   cash { get; set; }
         public DateTime datePurchased { get; set; }
 
         private Database db = new Database();
@@ -45,12 +45,8 @@ namespace IceCreamShopCSharp
                     break;
             }
 
-            var t = new Task(db.CommandExecute);
-
-            t.Start();
-            t.Wait();
-
-           // db.CommandExecute();
+            db.CommandExecute();
+        
         }
 
         string readORQuery() 
@@ -61,7 +57,7 @@ namespace IceCreamShopCSharp
         string saveSalesQuery()
         {
             var _query = "insert into tblsales (ORno,customerName,productCode,productPrice,productQty,productSubtotal,datePurchased)";
-            var _values = " values ('" + ORno + "','" + customerName + "','" + productCode + "'," + productPrice + "," + productQuantity + "," + productSubTotal + ",#" + datePurchased + "#)";
+            var _values = " values ('" + orNum + "','" + customerName + "','" + code + "'," + price + "," + quantity + "," + subTotal + ",#" + datePurchased + "#)";
             return _query + _values;
         }
 

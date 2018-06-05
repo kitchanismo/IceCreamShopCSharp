@@ -42,6 +42,7 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -62,7 +63,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -195,6 +195,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1002, 567);
             this.panel1.TabIndex = 3;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.Teal;
+            this.btnRefresh.Location = new System.Drawing.Point(394, 33);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(135, 37);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "REFRESH";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnCancel
             // 
@@ -422,19 +435,6 @@
             this.label2.Size = new System.Drawing.Size(110, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "- Product List -";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.Teal;
-            this.btnRefresh.Location = new System.Drawing.Point(394, 33);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(135, 37);
-            this.btnRefresh.TabIndex = 13;
-            this.btnRefresh.Text = "REFRESH";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // POS
             // 

@@ -9,16 +9,15 @@ namespace IceCreamShopCSharp
     class Helper
     {
         transparentForm transparent = new transparentForm();
+        kitchanismo.ListViewForeColor lvForeColor = new kitchanismo.ListViewForeColor();
 
         public void doChangeForeColor(ListView lv)
         {
-            var lvForeColor = new kitchanismo.ListViewForeColor();
-
             lvForeColor.ListView = lv;
             lvForeColor.Critical = 5;
             lvForeColor.Column = 5;
             lvForeColor.ColorStable = Color.Teal;
-            lvForeColor.ColorWarning = Color.Orange;
+            lvForeColor.ColorWarning = Color.DarkOrange;
             lvForeColor.ColorDanger = Color.Crimson;
 
             lvForeColor.changeListViewForeColor();

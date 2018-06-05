@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Data.OleDb;
 using System.Data;
-using System.Threading.Tasks;
+
+using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
@@ -22,14 +23,20 @@ namespace IceCreamShopCSharp
 
         public void Connected()
         {
-
-            if (conn.State == ConnectionState.Open)
+            try
             {
-                conn.Close();
-            }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
 
-            conn.ConnectionString = @"Provider=" + PROVIDER + ";Data Source=" + DATA_SOURCE + @"\" + DATABASE_NAME + ";";
-            conn.Open();
+                conn.ConnectionString = @"Provider=" + PROVIDER + ";Data Source=" + DATA_SOURCE + @"\" + DATABASE_NAME + ";";
+                conn.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Database Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -48,6 +55,7 @@ namespace IceCreamShopCSharp
             command.CommandText = query;
             command.Connection = conn;
             command.ExecuteNonQuery();
+        
         }
     }
 }

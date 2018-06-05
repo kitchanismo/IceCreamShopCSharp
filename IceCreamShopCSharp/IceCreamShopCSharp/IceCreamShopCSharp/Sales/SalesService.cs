@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using kitchanismo;
 using System.Drawing;
-using System.Threading;
 
 namespace IceCreamShopCSharp
 {
@@ -23,7 +22,7 @@ namespace IceCreamShopCSharp
         public void addToCart()
         {
 
-            if (productStock <= 0)
+            if (stock <= 0)
             {
                 helper.dimEnabled(true);
                 MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -40,7 +39,7 @@ namespace IceCreamShopCSharp
 
             var computedQty = getQtyInCart(inputedQuantity);
 
-            if (productStock < computedQty || inputedQuantity > computedQty)
+            if (stock < computedQty || inputedQuantity > computedQty)
             {
                 helper.dimEnabled(true);
                 MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -48,7 +47,7 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            double subTotal = productPrice * inputedQuantity;
+            double subTotal = price * inputedQuantity;
 
             updateCartItem(inputedQuantity, subTotal);
         }
@@ -58,7 +57,7 @@ namespace IceCreamShopCSharp
         {
             var inputedQuantity = getQtyFromInputBox("REMOVE QUANTITY");
 
-            if (inputedQuantity > productQuantity)
+            if (inputedQuantity > quantity)
             {
                 helper.dimEnabled(true);
                 MessageBox.Show("Quantity remove is higher!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -66,7 +65,7 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            var newSubtotal = inputedQuantity * productPrice;
+            var newSubtotal = inputedQuantity * price;
 
             updateCartItem(-inputedQuantity, -newSubtotal);
         }
@@ -90,7 +89,7 @@ namespace IceCreamShopCSharp
 
         public double computeChange()
         {
-            string[] inputs = { cash, total };
+            string[] inputs = { cash.ToString(), total.ToString() };
 
             if (helper.isEmpty(inputs))
             {
@@ -98,8 +97,8 @@ namespace IceCreamShopCSharp
                 return 0.00;
             }
 
-            var _total = double.Parse(total);
-            var _cash = double.Parse(cash);
+            var _total = double.Parse(total.ToString());
+            var _cash = double.Parse(cash.ToString());
 
             if (_total > _cash || _total == 0)
             {
@@ -114,14 +113,14 @@ namespace IceCreamShopCSharp
 
         public Color changeCashForeColor()
         {
-            string[] inputs = { cash, total };
+            string[] inputs = { cash.ToString(), total.ToString() };
             if (helper.isEmpty(inputs))
             {
                 return Color.Crimson;
             }
-            
-            var _total = double.Parse(total);
-            var _cash = double.Parse(cash);
+
+            var _total = double.Parse(total.ToString());
+            var _cash = double.Parse(cash.ToString());
 
             if (_total > _cash)
             {
@@ -137,7 +136,7 @@ namespace IceCreamShopCSharp
         { 
             var count = listView.Items.Count;
 
-            if (double.Parse(cash) == 0 || count == 0)
+            if (double.Parse(cash.ToString()) == 0 || count == 0)
             {
                 return false;
             }
@@ -164,10 +163,8 @@ namespace IceCreamShopCSharp
              var count = listView.Items.Count;
              for (int i = 0; i < count; i++)
              {
-                 var productService = new ProductService();
-
-                 productService.productCode = listView.Items[i].SubItems[0].Text;
-
+                 
+                 productService.code = listView.Items[i].SubItems[0].Text;
                  var reader = productService.readProducts(ProductAction.GetStock);
 
                  var stock = 0;
@@ -179,8 +176,7 @@ namespace IceCreamShopCSharp
                      stock = int.Parse(reader[0].ToString());
                  }
 
-                 productService.productQuantity = stock - int.Parse(listView.Items[i].SubItems[3].Text);
-                    
+                 productService.stock = stock - int.Parse(listView.Items[i].SubItems[3].Text);
                  productService.executeProducts(ProductAction.DeductStock);
              }
         }
@@ -188,7 +184,7 @@ namespace IceCreamShopCSharp
 
         private bool confirmProceed()
         {
-            var description = "ORNo: " + ORno + "\nTotal: " + productTotal + "\nCash: " + (productTotal + productChange).ToString() + "\nChange: " + productChange;
+            var description = "ORNo: " + orNum + "\nTotal: " + total + "\nCash: " + (total + change).ToString() + "\nChange: " + change;
 
             helper.dimEnabled(true);
             var confirm = MessageBox.Show("Proceed? \n" + description, "Ice Cream Shop", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -207,18 +203,21 @@ namespace IceCreamShopCSharp
         //show input box then return tha value inputed
         private void saveSales()
         {
-            var count = listView.Items.Count;
+            var count = listView.Items.Count; 
 
             var date = new DateTime();
+
             var currentDate = DateTime.Parse(date.TimeOfDay.ToString());
 
             for (int i = 0; i < count; i++)
             {
-                productCode     = listView.Items[i].SubItems[0].Text;
-                productPrice    = double.Parse(listView.Items[i].SubItems[2].Text);
-                productQuantity = int.Parse(listView.Items[i].SubItems[3].Text);
-                productSubTotal = double.Parse(listView.Items[i].SubItems[4].Text);
-                datePurchased   = currentDate;
+                
+                code           = listView.Items[i].SubItems[0].Text;
+                price          = double.Parse(listView.Items[i].SubItems[2].Text);
+                quantity       = int.Parse(listView.Items[i].SubItems[3].Text);
+                subTotal       = double.Parse(listView.Items[i].SubItems[4].Text);
+                datePurchased  = currentDate;
+
                 executeSales(SalesAction.SaveSales);
             }
         }
@@ -227,7 +226,7 @@ namespace IceCreamShopCSharp
         private int getQtyFromInputBox(string title)
         {
             var inputBox = new CustomInputBox();
-            var description = "Product: " + productName + "\nPrice: " + productPrice;
+            var description = "Product: " + name + "\nPrice: " + price;
            
             inputBox.Show(1, description, title);
             return inputBox.quantity;
@@ -241,7 +240,7 @@ namespace IceCreamShopCSharp
             var index = new IndexRow();
             index.Column = 1;
             index.ListView = listView;
-            index.Key = productCode;
+            index.Key = code;
 
             if (index.hasRow())
             {
@@ -251,7 +250,7 @@ namespace IceCreamShopCSharp
             }
             else
             {
-                return productStock;
+                return stock;
             }
         }
 
@@ -263,7 +262,7 @@ namespace IceCreamShopCSharp
             var index = new IndexRow();
             index.Column = 1;
             index.ListView = listView;
-            index.Key = productCode;
+            index.Key = code;
 
             if (index.hasRow())
             {
@@ -283,9 +282,9 @@ namespace IceCreamShopCSharp
             else
             {
                 string[] row = { 
-                      productCode, 
-                      productName, 
-                      productPrice.ToString(),
+                      code, 
+                      name, 
+                      price.ToString(),
                       _quantity.ToString(), 
                       _subTotal.ToString() 
                 };
@@ -300,9 +299,9 @@ namespace IceCreamShopCSharp
 
         private double getChange()
         {
-            var change = double.Parse(cash) - double.Parse(total);
+            var change = double.Parse(cash.ToString()) - double.Parse(total.ToString());
 
-            if (change < 0 || double.Parse(total) == 0)
+            if (change < 0 || double.Parse(total.ToString()) == 0)
             {
                 return 0;
                 //txtCash.Text = "0.00";

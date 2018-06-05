@@ -70,10 +70,8 @@ namespace IceCreamShopCSharp
 
         private void doTransition(Control active)
         {
-            //panelWrapper.BackColor = active.BackColor;
             transition.TabActive = active;
-            transition.Run();   
-            
+            transition.Run();
         }
 
         private void btnSales_Click(object sender, EventArgs e)

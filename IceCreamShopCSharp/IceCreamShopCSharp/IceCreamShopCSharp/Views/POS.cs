@@ -19,7 +19,6 @@ namespace IceCreamShopCSharp
         public POS()
         {
             InitializeComponent();
-            
             InitializeListView();
         }
 
@@ -37,7 +36,7 @@ namespace IceCreamShopCSharp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            productService.productName = txtSearch.Text;
+            productService.searchKey = txtSearch.Text;
             productService.search();
         }
 
@@ -46,11 +45,11 @@ namespace IceCreamShopCSharp
             
             foreach (ListViewItem item in lvProduct.SelectedItems)
             {
-                salesService.productCode     = item.SubItems[0].Text;
-                salesService.productCategory = item.SubItems[1].Text;
-                salesService.productName     = item.SubItems[2].Text;
-                salesService.productPrice    = double.Parse(item.SubItems[3].Text);
-                salesService.productStock    = int.Parse(item.SubItems[4].Text);
+                salesService.code     = item.SubItems[0].Text;
+                salesService.category = item.SubItems[1].Text;
+                salesService.name     = item.SubItems[2].Text;
+                salesService.price    = double.Parse(item.SubItems[3].Text);
+                salesService.stock    = int.Parse(item.SubItems[4].Text);
             } 
 
             salesService.addToCart();
@@ -64,10 +63,10 @@ namespace IceCreamShopCSharp
         {
             foreach (ListViewItem item in lvCart.SelectedItems)
             {
-                salesService.productCode     = item.SubItems[0].Text;
-                salesService.productName     = item.SubItems[1].Text;
-                salesService.productPrice    = double.Parse(item.SubItems[2].Text);
-                salesService.productQuantity = int.Parse(item.SubItems[3].Text);
+                salesService.code     = item.SubItems[0].Text;
+                salesService.name     = item.SubItems[1].Text;
+                salesService.price    = double.Parse(item.SubItems[2].Text);
+                salesService.quantity = int.Parse(item.SubItems[3].Text);
             }
 
             salesService.removeToCart();
@@ -79,27 +78,27 @@ namespace IceCreamShopCSharp
 
         private void btnPurchase_Click(object sender, EventArgs e)
         {
-            salesService.total         = lblTotal.Text;
-            salesService.cash          = txtCash.Text;
+
             salesService.customerName  = txtCustomer.Text;
-            salesService.ORno          = lblOR.Text;
-            salesService.productChange = double.Parse(lblChange.Text);
-            salesService.productTotal  = double.Parse(lblTotal.Text);
+            salesService.orNum         = lblOR.Text;
+            salesService.cash          = double.Parse(txtCash.Text);
+            salesService.change        = double.Parse(lblChange.Text);
+            salesService.total         = double.Parse(lblTotal.Text);
           
             if (salesService.hasPurchased())
             {
                 helper.dimEnabled(true);
                 MessageBox.Show("Successfully Purchased!", "Ice Cream Shop", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 helper.dimEnabled(false);
-                resetForm();
+                resetTransaction();
             }
             
         }
 
         private void txtCash_TextChanged(object sender, EventArgs e)
         {
-            salesService.total  = lblTotal.Text;
-            salesService.cash   = txtCash.Text;
+            salesService.total  = double.Parse(lblTotal.Text);
+            salesService.cash   = double.Parse(txtCash.Text);
 
             lblChange.Text      = salesService.computeChange().ToString("N");
             txtCash.ForeColor   = salesService.changeCashForeColor();
@@ -113,18 +112,17 @@ namespace IceCreamShopCSharp
 
         //local methods
 
-        private void resetForm()
+        private void resetTransaction()
         {
            txtCash.Text     = "0.00";
            lblChange.Text   = "0.00";
            lblTotal.Text    = "0.00";
            lblNoItems.Text  = "0";
            txtCustomer.Text = "Walk-In";
-        
            lblOR.Text       = salesService.generateNewOR();
-           lvCart.Items.Clear();
-           //lvProduct.Items.Clear();
 
+           lvCart.Items.Clear();
+          
            productService.read();
         }
 
@@ -167,7 +165,7 @@ namespace IceCreamShopCSharp
 
             if (DialogResult.Yes == confirm)
             {
-                resetForm();
+                resetTransaction();
             }
 
             helper.dimEnabled(false);

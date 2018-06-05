@@ -8,16 +8,16 @@ using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    class Product 
+    
+    class Product : Search
     {
 
-        public string productCode { get; set; }
-        public string productCategory { get; set; }
-        public string productName { get; set; }
-        public double productPrice { get; set; }
-        public int productStock { get; set; }
-        public int productQuantity { get; set; }
-        public DateTime productPurchased { get; set; }
+        public string    code { get; set; }
+        public string    category { get; set; }
+        public string    name { get; set; }
+        public double    price { get; set; }
+        public int       stock { get; set; }
+        private DateTime datePurchased { get; set; }
 
         private Database db = new Database();
 
@@ -53,8 +53,8 @@ namespace IceCreamShopCSharp
 
         private string searchQuery()
         {
-            var key = "'%" + productName.ToLower() + "%'";
-            return "select * from tblproducts where productName like " + key + " order by id";
+            var key = "'%" + searchKey.ToLower() + "%'";
+            return "select * from tblproducts where productName like " + key + " or productCode like " + key + " or productCategory like " + key + " order by id";
         }
 
         private string loadQuery()
@@ -66,21 +66,26 @@ namespace IceCreamShopCSharp
         private string insertQuery()
         {
             var _query = "insert into tblproducts (productCode,productCategory,productName,productPrice,productStock,datePurchased)";
-            var _values = " values ('" + productCode + "','" + productCategory + "','" + productName + "'," + productPrice + "," + productStock + "," + productPurchased + ")";
+            var _values = " values ('" + code + "','" + category + "','" + name + "'," + price + "," + stock + "," + datePurchased + ")";
             return _query + _values;
         }
 
         private string deductStockQuery()
         {
-            var _query = "update tblproducts SET productStock = " + productQuantity + " where productCode = '" + productCode + "'";
+            var _query = "update tblproducts SET productStock = " + stock + " where productCode = '" + code + "'";
             return _query;
         }
 
         private string getStockQuery()
         {
-            return "select productStock from tblproducts where productCode = '" + productCode + "'";
+            return "select productStock from tblproducts where productCode = '" + code + "'";
         }
  
+    }
+
+    class Search
+    {
+        public string searchKey { get; set; }    
     }
 
     enum ProductAction
