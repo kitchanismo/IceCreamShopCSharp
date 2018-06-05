@@ -8,41 +8,46 @@ using kitchanismo;
 
 namespace IceCreamShopCSharp
 {
-    class ProductService : Product
+    class ProductService: Product 
     {
         Helper shared = new Helper();
-            
-        public void read(ListView lv)
+
+        public ListView listView { get; set; }
+
+        public void read()
         {
+           // var p = new Product();
             var reader = readProducts(ProductAction.Load);
             
-            mapItems(reader, lv);
-            
+            mapItems(reader);
+
             //changing forecolor of listview
-            shared.doChangeForeColor(lv);
+            shared.doChangeForeColor(listView);
         }
-
-        public void search(ListView lv)
+     
+        public void search()
         {
+            //var p = new Product();
             var reader = readProducts(ProductAction.Search);
-            
-            mapItems(reader, lv);
+          
+            mapItems(reader);
 
-            shared.doChangeForeColor(lv);
+            shared.doChangeForeColor(listView);
+        
         }
 
         //map items from datareader into listview
-        private void mapItems(OleDbDataReader _reader, ListView lv)
+        private void mapItems(OleDbDataReader _reader)
         {
             var indexStart = 1; //starts at 1 to skip ID(0) to add on listview
 
-            lv.Items.Clear();
+            listView.Items.Clear();
 
             while (_reader.Read())
             {
-                ListViewItem with_1 = lv.Items.Add((_reader[indexStart]).ToString());
+                ListViewItem with_1 = listView.Items.Add((_reader[indexStart]).ToString());
 
-                var len = lv.Columns.Count;
+                var len = listView.Columns.Count;
 
                 for (int i = indexStart + 1; i < len + indexStart; i++)
                 {

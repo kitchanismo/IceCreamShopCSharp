@@ -34,9 +34,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="kitchanismo_transition, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\kitchanismo_transition.dll</HintPath>
+    <Reference Include="Kitchanismo">
+      <HintPath>..\..\..\..\..\transition\testsample\test\bin\Debug\Kitchanismo.dll</HintPath>
     </Reference>
     <Reference Include="kitchanRandomStuff">
       <HintPath>..\..\IceCreamShop\IceCreamShop\bin\Debug\kitchanRandomStuff.dll</HintPath>
@@ -52,28 +51,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections\Connection.cs" />
+    <Compile Include="Connections\Database.cs" />
     <Compile Include="Helper\CustomInputBox.cs" />
     <Compile Include="Sales\SalesService.cs" />
-    <Compile Include="Tabs\POSTab.cs">
+    <Compile Include="Views\POS.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Tabs\POSTab.Designer.cs">
-      <DependentUpon>POSTab.cs</DependentUpon>
+    <Compile Include="Views\POS.Designer.cs">
+      <DependentUpon>POS.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\ProductService.cs" />
     <Compile Include="Products\Product.cs" />
-    <Compile Include="Tabs\SalesTab.cs">
+    <Compile Include="Views\SaleReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Tabs\SalesTab.Designer.cs">
-      <DependentUpon>SalesTab.cs</DependentUpon>
+    <Compile Include="Views\SaleReport.Designer.cs">
+      <DependentUpon>SaleReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\InventoryTab.cs">
+    <Compile Include="Views\Inventory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Tabs\InventoryTab.Designer.cs">
-      <DependentUpon>InventoryTab.cs</DependentUpon>
+    <Compile Include="Views\Inventory.Designer.cs">
+      <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -98,14 +97,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tabs\POSTab.resx">
-      <DependentUpon>POSTab.cs</DependentUpon>
+    <EmbeddedResource Include="Views\POS.resx">
+      <DependentUpon>POS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tabs\SalesTab.resx">
-      <DependentUpon>SalesTab.cs</DependentUpon>
+    <EmbeddedResource Include="Views\SaleReport.resx">
+      <DependentUpon>SaleReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tabs\InventoryTab.resx">
-      <DependentUpon>InventoryTab.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Inventory.resx">
+      <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

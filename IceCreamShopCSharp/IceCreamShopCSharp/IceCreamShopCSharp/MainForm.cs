@@ -6,13 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using kitchanismo_transition;
+using Kitchanismo;
 
 namespace IceCreamShopCSharp
 {
     public partial class MainForm : Form
     {
-        Kitchanismo chan = new Kitchanismo();
+        KitchanismoTransition transition = new KitchanismoTransition();
+        KitchanismoAnimation animation = new KitchanismoAnimation();
    
         public MainForm()
         {
@@ -24,7 +25,7 @@ namespace IceCreamShopCSharp
         {
             panelPOS.BringToFront();
             dockFill();
-            TProperties.initLocation();
+            InitializeTransition();
         }
 
         private void dockFill()
@@ -33,18 +34,18 @@ namespace IceCreamShopCSharp
             inventoryForm1.Dock = DockStyle.Fill;
             salesForm1.Dock     = DockStyle.Fill;
         }
-   
-        private void initTransition(Control target)
+
+        //transition requirements
+        private void InitializeTransition()
         {
-            TProperties.nav   = target;
-            TProperties.nav1  = panelPOS;
-            TProperties.nav2  = panelInventory;
-            TProperties.nav3  = panelSales;
-            TProperties.nav4  = new Panel();
-            TProperties.nav5  = new Panel();
-            TProperties.loc   = 0;
-            TProperties.speed = 800;
-            TProperties.ease  = IEasing.quintinout;
+            transition.TabsArray(panelPOS, panelInventory, panelSales);
+
+            transition.Speed = 600;
+
+            transition.Ease = Easing.CubicInOut;
+            transition.Type = TypeTransition.Swap;
+            transition.Shift = ShiftTransition.Y;
+            transition.ReverseShift = true;
         }
 
         private void moveAccentBar(Button btn)
@@ -54,15 +55,25 @@ namespace IceCreamShopCSharp
             point.Y = accentbar.Location.Y;
             point.X = btn.Location.X;
 
-            chan.move_animation(accentbar, point, 30);
-            chan.changebackcolor_control(accentbar, btn.BackColor);
+            animation.AccentSpeed = 25;
+            animation.ColorSpeed = 800;
+            animation.Location = point;
+            animation.Target = accentbar;
+            animation.Color = btn.BackColor;
+
+            animation.MoveAccentBar();
+            animation.ChangeBackColor();
+
+            animation.Target = panelWrapper;
+            animation.ChangeBackColor();
         }
 
-        private void doTransition(Control target)
+        private void doTransition(Control active)
         {
-            initTransition(target);
-            chan.y_wipe(true);   
-            panelWrapper.BackColor = target.BackColor;
+            //panelWrapper.BackColor = active.BackColor;
+            transition.TabActive = active;
+            transition.Run();   
+            
         }
 
         private void btnSales_Click(object sender, EventArgs e)

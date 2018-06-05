@@ -8,36 +8,47 @@ using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    class Product : Connection
+    class Product 
     {
 
-        public int productQuantity { get; set; }
         public string productCode { get; set; }
         public string productCategory { get; set; }
         public string productName { get; set; }
         public double productPrice { get; set; }
         public int productStock { get; set; }
+        public int productQuantity { get; set; }
         public DateTime productPurchased { get; set; }
 
+        private Database db = new Database();
+
         //just return DataReader to Data Services
-        protected OleDbDataReader readProducts(ProductAction productAction)
+        public OleDbDataReader readProducts(ProductAction productAction)
         {
+           
             switch (productAction)
             {
                 case ProductAction.Load:
-                    query = loadQuery();
+                    db.query = loadQuery();
                     break;
                 case ProductAction.Search:
-                    query = searchQuery();
-                    break;
-                case ProductAction.Insert:
-                    query = insertQuery();
+                    db.query = searchQuery();
                     break;
                 case ProductAction.GetStock:
-                    query = getStockQuery();
+                    db.query = getStockQuery();
                     break;
             }
-            return CommandReader(query);
+            return db.CommandReader();
+        }
+
+        public void executeProducts(ProductAction productAction)
+        {
+            switch (productAction)
+            {
+                case ProductAction.DeductStock:
+                    db.query = deductStockQuery();
+                    break;
+            }
+            db.CommandExecute();
         }
 
         private string searchQuery()
@@ -48,6 +59,7 @@ namespace IceCreamShopCSharp
 
         private string loadQuery()
         {
+         
             return "select * from tblproducts order by id";
         }
 
@@ -56,6 +68,12 @@ namespace IceCreamShopCSharp
             var _query = "insert into tblproducts (productCode,productCategory,productName,productPrice,productStock,datePurchased)";
             var _values = " values ('" + productCode + "','" + productCategory + "','" + productName + "'," + productPrice + "," + productStock + "," + productPurchased + ")";
             return _query + _values;
+        }
+
+        private string deductStockQuery()
+        {
+            var _query = "update tblproducts SET productStock = " + productQuantity + " where productCode = '" + productCode + "'";
+            return _query;
         }
 
         private string getStockQuery()
@@ -70,6 +88,7 @@ namespace IceCreamShopCSharp
         Load,
         Search,
         Insert,
-        GetStock
+        GetStock,
+        DeductStock
     }  
 }

@@ -53,7 +53,7 @@ namespace IceCreamShopCSharp
             return total;
         }
 
-        public bool IsEmpty(string[] str)
+        public bool isEmpty(string[] str)
         {
             foreach (string _str in str)
             {
@@ -74,7 +74,7 @@ namespace IceCreamShopCSharp
           
         }
 
-        public void NumbersSinglePointOnly(object sender, KeyPressEventArgs e)
+        public void doNumbersSinglePointOnly(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
             {
@@ -90,7 +90,7 @@ namespace IceCreamShopCSharp
 
         }
 
-        public bool IsEnabled(Color _color)
+        public bool isEnabled(Color _color)
         {
             if (_color == Color.Crimson)
             {

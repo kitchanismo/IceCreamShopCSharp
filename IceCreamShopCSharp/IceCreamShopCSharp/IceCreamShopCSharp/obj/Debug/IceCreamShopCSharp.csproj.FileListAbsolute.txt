@@ -2,9 +2,6 @@ C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamS
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.pdb
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.pdb
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.xml
-C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POSTab.resources
-C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SalesTab.resources
-C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.InventoryTab.resources
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.MainForm.resources
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Properties.Resources.resources
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
@@ -12,3 +9,8 @@ C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamS
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csprojResolveAssemblyReference.cache
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.transparentForm.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\Kitchanismo.dll
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\Kitchanismo.pdb
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POS.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SaleReport.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Inventory.resources

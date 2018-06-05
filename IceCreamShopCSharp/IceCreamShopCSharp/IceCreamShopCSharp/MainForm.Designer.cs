@@ -37,11 +37,11 @@
             this.panelFooter = new System.Windows.Forms.Panel();
             this.panelWrapper = new System.Windows.Forms.Panel();
             this.panelPOS = new System.Windows.Forms.Panel();
+            this.pointOfSale1 = new IceCreamShopCSharp.POS();
             this.panelInventory = new System.Windows.Forms.Panel();
+            this.inventoryForm1 = new IceCreamShopCSharp.Inventory();
             this.panelSales = new System.Windows.Forms.Panel();
-            this.pointOfSale1 = new IceCreamShopCSharp.POSTab();
-            this.inventoryForm1 = new IceCreamShopCSharp.InventoryTab();
-            this.salesForm1 = new IceCreamShopCSharp.SalesTab();
+            this.salesForm1 = new IceCreamShopCSharp.SaleReport();
             this.panelNavbar.SuspendLayout();
             this.panelWrapper.SuspendLayout();
             this.panelPOS.SuspendLayout();
@@ -162,30 +162,12 @@
             // 
             // panelPOS
             // 
-            this.panelPOS.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.panelPOS.BackColor = System.Drawing.Color.Teal;
             this.panelPOS.Controls.Add(this.pointOfSale1);
             this.panelPOS.Location = new System.Drawing.Point(0, 0);
             this.panelPOS.Name = "panelPOS";
             this.panelPOS.Size = new System.Drawing.Size(1022, 625);
             this.panelPOS.TabIndex = 1;
-            // 
-            // panelInventory
-            // 
-            this.panelInventory.BackColor = System.Drawing.Color.IndianRed;
-            this.panelInventory.Controls.Add(this.inventoryForm1);
-            this.panelInventory.Location = new System.Drawing.Point(0, 0);
-            this.panelInventory.Name = "panelInventory";
-            this.panelInventory.Size = new System.Drawing.Size(1022, 625);
-            this.panelInventory.TabIndex = 1;
-            // 
-            // panelSales
-            // 
-            this.panelSales.BackColor = System.Drawing.Color.Goldenrod;
-            this.panelSales.Controls.Add(this.salesForm1);
-            this.panelSales.Location = new System.Drawing.Point(0, 0);
-            this.panelSales.Name = "panelSales";
-            this.panelSales.Size = new System.Drawing.Size(1022, 625);
-            this.panelSales.TabIndex = 0;
             // 
             // pointOfSale1
             // 
@@ -197,6 +179,15 @@
             this.pointOfSale1.Size = new System.Drawing.Size(1022, 573);
             this.pointOfSale1.TabIndex = 0;
             // 
+            // panelInventory
+            // 
+            this.panelInventory.BackColor = System.Drawing.Color.IndianRed;
+            this.panelInventory.Controls.Add(this.inventoryForm1);
+            this.panelInventory.Location = new System.Drawing.Point(0, 0);
+            this.panelInventory.Name = "panelInventory";
+            this.panelInventory.Size = new System.Drawing.Size(1022, 625);
+            this.panelInventory.TabIndex = 1;
+            // 
             // inventoryForm1
             // 
             this.inventoryForm1.BackColor = System.Drawing.Color.IndianRed;
@@ -206,6 +197,15 @@
             this.inventoryForm1.Name = "inventoryForm1";
             this.inventoryForm1.Size = new System.Drawing.Size(1020, 372);
             this.inventoryForm1.TabIndex = 0;
+            // 
+            // panelSales
+            // 
+            this.panelSales.BackColor = System.Drawing.Color.Goldenrod;
+            this.panelSales.Controls.Add(this.salesForm1);
+            this.panelSales.Location = new System.Drawing.Point(0, 0);
+            this.panelSales.Name = "panelSales";
+            this.panelSales.Size = new System.Drawing.Size(1022, 625);
+            this.panelSales.TabIndex = 0;
             // 
             // salesForm1
             // 
@@ -255,8 +255,8 @@
         private System.Windows.Forms.Panel panelInventory;
         private System.Windows.Forms.Panel panelSales;
         private System.Windows.Forms.Panel accentbar;
-        private InventoryTab inventoryForm1;
-        private SalesTab salesForm1;
-        private POSTab pointOfSale1;
+        private Inventory inventoryForm1;
+        private SaleReport salesForm1;
+        private POS pointOfSale1;
     }
 }

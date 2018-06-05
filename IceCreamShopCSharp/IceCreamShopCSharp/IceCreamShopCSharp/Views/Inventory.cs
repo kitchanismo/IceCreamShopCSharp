@@ -9,19 +9,20 @@ using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    public partial class InventoryTab : UserControl
+    public partial class Inventory : UserControl
     {
 
         ProductService productService = new ProductService();
 
-        public InventoryTab()
+        public Inventory()
         {
             InitializeComponent();
         }
 
         private void POSForm_Load(object sender, EventArgs e)
         {
-            productService.read(lvProduct);
+            productService.listView = lvProduct;
+            productService.read();
         }
     }
 }

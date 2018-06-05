@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    public partial class SalesTab : UserControl
+    public partial class SaleReport : UserControl
     {
-        public SalesTab()
+        public SaleReport()
         {
             InitializeComponent();
         }

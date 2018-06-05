@@ -1,6 +1,6 @@
 ﻿namespace IceCreamShopCSharp
 {
-    partial class SalesTab
+    partial class SaleReport
     {
         /// <summary> 
         /// Required designer variable.

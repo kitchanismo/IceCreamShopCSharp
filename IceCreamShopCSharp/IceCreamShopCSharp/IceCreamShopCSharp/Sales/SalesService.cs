@@ -6,16 +6,21 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using kitchanismo;
 using System.Drawing;
+using System.Threading;
 
 namespace IceCreamShopCSharp
 {
     class SalesService : Sales
     {
         Helper helper = new Helper();
-          
+        ProductService productService = new ProductService();
+
+        public ListView listView { get; set; }
+
+        //SalesService salesService = new SalesService();
         //quantity inputed validations 
         //if input qty is valid then either update qty or add row
-        public void addToCart(ListView lv)
+        public void addToCart()
         {
 
             if (productStock <= 0)
@@ -33,7 +38,7 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            var computedQty = getQtyInCart(lv, inputedQuantity);
+            var computedQty = getQtyInCart(inputedQuantity);
 
             if (productStock < computedQty || inputedQuantity > computedQty)
             {
@@ -45,11 +50,11 @@ namespace IceCreamShopCSharp
 
             double subTotal = productPrice * inputedQuantity;
 
-            updateCartItem(lv, inputedQuantity, subTotal);
+            updateCartItem(inputedQuantity, subTotal);
         }
 
         //minus quantity and subtotal into listview Cart 
-        public void removeProductToCart(ListView lv)
+        public void removeToCart()
         {
             var inputedQuantity = getQtyFromInputBox("REMOVE QUANTITY");
 
@@ -63,7 +68,7 @@ namespace IceCreamShopCSharp
 
             var newSubtotal = inputedQuantity * productPrice;
 
-            updateCartItem(lv, -inputedQuantity, -newSubtotal);
+            updateCartItem(-inputedQuantity, -newSubtotal);
         }
 
 
@@ -87,7 +92,7 @@ namespace IceCreamShopCSharp
         {
             string[] inputs = { cash, total };
 
-            if (helper.IsEmpty(inputs))
+            if (helper.isEmpty(inputs))
             {
                 
                 return 0.00;
@@ -110,7 +115,7 @@ namespace IceCreamShopCSharp
         public Color changeCashForeColor()
         {
             string[] inputs = { cash, total };
-            if (helper.IsEmpty(inputs))
+            if (helper.isEmpty(inputs))
             {
                 return Color.Crimson;
             }
@@ -128,10 +133,97 @@ namespace IceCreamShopCSharp
             }
         }
 
-        //private methods
-       
+        public bool hasPurchased()
+        { 
+            var count = listView.Items.Count;
 
+            if (double.Parse(cash) == 0 || count == 0)
+            {
+                return false;
+            }
+
+            if (confirmProceed())
+            {
+                return false;
+            }
+
+            saveSales();
+
+            deductStock();
+
+            helper.dimEnabled(false);
+
+            return true;
+        }
+
+        //private methods
+      
+
+        private void deductStock()
+        {
+             var count = listView.Items.Count;
+             for (int i = 0; i < count; i++)
+             {
+                 var productService = new ProductService();
+
+                 productService.productCode = listView.Items[i].SubItems[0].Text;
+
+                 var reader = productService.readProducts(ProductAction.GetStock);
+
+                 var stock = 0;
+
+                 reader.Read();
+
+                 if (reader.HasRows)
+                 {
+                     stock = int.Parse(reader[0].ToString());
+                 }
+
+                 productService.productQuantity = stock - int.Parse(listView.Items[i].SubItems[3].Text);
+                    
+                 productService.executeProducts(ProductAction.DeductStock);
+             }
+        }
+
+
+        private bool confirmProceed()
+        {
+            var description = "ORNo: " + ORno + "\nTotal: " + productTotal + "\nCash: " + (productTotal + productChange).ToString() + "\nChange: " + productChange;
+
+            helper.dimEnabled(true);
+            var confirm = MessageBox.Show("Proceed? \n" + description, "Ice Cream Shop", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           
+            if (DialogResult.Yes == confirm)
+            {
+               
+                return false;
+            }
+
+            helper.dimEnabled(false);
+            return true;
+        }
+
+       
         //show input box then return tha value inputed
+        private void saveSales()
+        {
+            var count = listView.Items.Count;
+
+            var date = new DateTime();
+            var currentDate = DateTime.Parse(date.TimeOfDay.ToString());
+
+            for (int i = 0; i < count; i++)
+            {
+                productCode     = listView.Items[i].SubItems[0].Text;
+                productPrice    = double.Parse(listView.Items[i].SubItems[2].Text);
+                productQuantity = int.Parse(listView.Items[i].SubItems[3].Text);
+                productSubTotal = double.Parse(listView.Items[i].SubItems[4].Text);
+                datePurchased   = currentDate;
+                executeSales(SalesAction.SaveSales);
+            }
+        }
+
+
         private int getQtyFromInputBox(string title)
         {
             var inputBox = new CustomInputBox();
@@ -144,17 +236,17 @@ namespace IceCreamShopCSharp
         //if item is not in cart list then return the current stock
         //else get the qty of the selected product in cart list
         //get the sum of qty inputed and qty in cart list then return
-        private int getQtyInCart(ListView lv, int _quantity)
+        private int getQtyInCart(int _quantity)
         {
             var index = new IndexRow();
             index.Column = 1;
-            index.ListView = lv;
+            index.ListView = listView;
             index.Key = productCode;
 
             if (index.hasRow())
             {
                 var i = index.getListIndex();
-                var qty = int.Parse(lv.Items[i].SubItems[3].Text);
+                var qty = int.Parse(listView.Items[i].SubItems[3].Text);
                 return qty + _quantity;
             }
             else
@@ -166,26 +258,26 @@ namespace IceCreamShopCSharp
         //update(add, minus) cart qty and subtotal
         //if product is existed in cart list then update qty and subtotal
         //else add another row to cart list
-        private void updateCartItem(ListView lv, int _quantity, double _subTotal)
+        private void updateCartItem(int _quantity, double _subTotal)
         {
             var index = new IndexRow();
             index.Column = 1;
-            index.ListView = lv;
+            index.ListView = listView;
             index.Key = productCode;
 
             if (index.hasRow())
             {
                 var i = index.getListIndex();
 
-                var newQty = (int.Parse(lv.Items[i].SubItems[3].Text) + _quantity).ToString();
-                var newSubTotal = (double.Parse(lv.Items[i].SubItems[4].Text) + _subTotal).ToString();
+                var newQty = (int.Parse(listView.Items[i].SubItems[3].Text) + _quantity).ToString();
+                var newSubTotal = (double.Parse(listView.Items[i].SubItems[4].Text) + _subTotal).ToString();
 
-                lv.Items[i].SubItems[3].Text = newQty;
-                lv.Items[i].SubItems[4].Text = newSubTotal;
+                listView.Items[i].SubItems[3].Text = newQty;
+                listView.Items[i].SubItems[4].Text = newSubTotal;
 
-                if (int.Parse(lv.Items[i].SubItems[3].Text) == 0)
+                if (int.Parse(listView.Items[i].SubItems[3].Text) == 0)
                 {
-                    lv.Items.RemoveAt(i);
+                    listView.Items.RemoveAt(i);
                 }
             }
             else
@@ -199,15 +291,28 @@ namespace IceCreamShopCSharp
                 };
 
                 var listViewItem = new ListViewItem(row);
-                lv.Items.Add(listViewItem);
+                listView.Items.Add(listViewItem);
             }
         }
 
 
         //dead code
-        public int getStock()
+
+        private double getChange()
         {
-            var reader = readProducts(ProductAction.GetStock);
+            var change = double.Parse(cash) - double.Parse(total);
+
+            if (change < 0 || double.Parse(total) == 0)
+            {
+                return 0;
+                //txtCash.Text = "0.00";
+            }
+            return change;
+        }
+
+       private int getStock()
+        {
+            var reader = productService.readProducts(ProductAction.GetStock);
 
             reader.Read();
             if (reader.HasRows)

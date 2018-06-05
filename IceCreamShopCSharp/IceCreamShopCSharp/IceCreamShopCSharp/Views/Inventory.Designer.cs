@@ -1,6 +1,6 @@
 ﻿namespace IceCreamShopCSharp
 {
-    partial class InventoryTab
+    partial class Inventory
     {
         /// <summary> 
         /// Required designer variable.

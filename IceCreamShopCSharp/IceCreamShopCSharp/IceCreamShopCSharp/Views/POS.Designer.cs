@@ -1,6 +1,6 @@
 ﻿namespace IceCreamShopCSharp
 {
-    partial class POSTab
+    partial class POS
     {
         /// <summary> 
         /// Required designer variable.
@@ -42,8 +42,9 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.lblOR = new System.Windows.Forms.Label();
             this.lblNoItems = new System.Windows.Forms.Label();
             this.lblChange = new System.Windows.Forms.Label();
@@ -56,12 +57,12 @@
             this.txtCash = new System.Windows.Forms.TextBox();
             this.btnPurchase = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCustomer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -176,13 +177,14 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtCash);
             this.panel1.Controls.Add(this.btnPurchase);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.txtCustomer);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label3);
@@ -194,17 +196,18 @@
             this.panel1.Size = new System.Drawing.Size(1002, 567);
             this.panel1.TabIndex = 3;
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Crimson;
-            this.button1.Location = new System.Drawing.Point(850, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 60);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "CANCEL TRANSACTION";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.Color.Crimson;
+            this.btnCancel.Location = new System.Drawing.Point(850, 33);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(135, 37);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -223,6 +226,14 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(438, 61);
             this.panel2.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gray;
+            this.panel3.Location = new System.Drawing.Point(304, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1, 40);
+            this.panel3.TabIndex = 19;
             // 
             // lblOR
             // 
@@ -254,7 +265,6 @@
             this.lblChange.ForeColor = System.Drawing.Color.Crimson;
             this.lblChange.Location = new System.Drawing.Point(129, 30);
             this.lblChange.Name = "lblChange";
-            this.lblChange.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblChange.Size = new System.Drawing.Size(41, 21);
             this.lblChange.TabIndex = 16;
             this.lblChange.Text = "0.00";
@@ -317,9 +327,9 @@
             this.label6.ForeColor = System.Drawing.Color.Teal;
             this.label6.Location = new System.Drawing.Point(543, 490);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 20);
+            this.label6.Size = new System.Drawing.Size(141, 20);
             this.label6.TabIndex = 10;
-            this.label6.Text = "- Cash Render -";
+            this.label6.Text = "- Cash Rendered -";
             // 
             // txtCash
             // 
@@ -335,6 +345,7 @@
             this.txtCash.Text = "0.00";
             this.txtCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
+            this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_Keypress);
             // 
             // btnPurchase
             // 
@@ -342,9 +353,9 @@
             this.btnPurchase.Enabled = false;
             this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPurchase.ForeColor = System.Drawing.Color.Teal;
-            this.btnPurchase.Location = new System.Drawing.Point(850, 490);
+            this.btnPurchase.Location = new System.Drawing.Point(850, 513);
             this.btnPurchase.Name = "btnPurchase";
-            this.btnPurchase.Size = new System.Drawing.Size(135, 60);
+            this.btnPurchase.Size = new System.Drawing.Size(135, 37);
             this.btnPurchase.TabIndex = 8;
             this.btnPurchase.Text = "PURCHASE";
             this.btnPurchase.UseVisualStyleBackColor = false;
@@ -360,13 +371,16 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "- Customer Name -";
             // 
-            // textBox2
+            // txtCustomer
             // 
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(547, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(288, 37);
-            this.textBox2.TabIndex = 6;
+            this.txtCustomer.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCustomer.Location = new System.Drawing.Point(547, 33);
+            this.txtCustomer.Name = "txtCustomer";
+            this.txtCustomer.Size = new System.Drawing.Size(288, 37);
+            this.txtCustomer.TabIndex = 6;
+            this.txtCustomer.Text = "Walk-In";
+            this.txtCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -381,10 +395,12 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtSearch.Location = new System.Drawing.Point(16, 33);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(513, 37);
+            this.txtSearch.Size = new System.Drawing.Size(363, 37);
             this.txtSearch.TabIndex = 4;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label3
@@ -407,15 +423,20 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "- Product List -";
             // 
-            // panel3
+            // btnRefresh
             // 
-            this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.Location = new System.Drawing.Point(304, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1, 40);
-            this.panel3.TabIndex = 19;
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.Teal;
+            this.btnRefresh.Location = new System.Drawing.Point(394, 33);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(135, 37);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "REFRESH";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // POSTab
+            // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -424,7 +445,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "POSTab";
+            this.Name = "POS";
             this.Size = new System.Drawing.Size(1016, 625);
             this.Load += new System.EventHandler(this.POSForm_Load);
             this.panel1.ResumeLayout(false);
@@ -456,7 +477,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCustomer;
         private System.Windows.Forms.Button btnPurchase;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label10;
@@ -469,8 +490,9 @@
         private System.Windows.Forms.Label lblNoItems;
         private System.Windows.Forms.Label lblChange;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
