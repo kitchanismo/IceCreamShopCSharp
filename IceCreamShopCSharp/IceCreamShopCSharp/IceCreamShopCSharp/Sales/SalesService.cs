@@ -6,12 +6,14 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using kitchanismo;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace IceCreamShopCSharp
 {
     class SalesService : Sales
     {
         Helper helper = new Helper();
+
         ProductService productService = new ProductService();
 
         public ListView listView { get; set; }
@@ -24,9 +26,9 @@ namespace IceCreamShopCSharp
 
             if (stock <= 0)
             {
-                helper.dimEnabled(true);
+                Helper.dimEnabled(true);
                 MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                helper.dimEnabled(false);
+                Helper.dimEnabled(false);
                 return;
             }
 
@@ -41,9 +43,9 @@ namespace IceCreamShopCSharp
 
             if (stock < computedQty || inputedQuantity > computedQty)
             {
-                helper.dimEnabled(true);
+                Helper.dimEnabled(true);
                 MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                helper.dimEnabled(false);
+                Helper.dimEnabled(false);
                 return;
             }
 
@@ -59,9 +61,9 @@ namespace IceCreamShopCSharp
 
             if (inputedQuantity > quantity)
             {
-                helper.dimEnabled(true);
+                Helper.dimEnabled(true);
                 MessageBox.Show("Quantity remove is higher!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                helper.dimEnabled(false);
+                Helper.dimEnabled(false);
                 return;
             }
 
@@ -74,7 +76,7 @@ namespace IceCreamShopCSharp
         public string generateNewOR()
         {
             var ORno = "";
-            var reader = readSales(SalesAction.ReadOR);
+            var reader = read(SalesAction.ReadOR);
             reader.Read();
             try 
 	        {	        
@@ -146,12 +148,13 @@ namespace IceCreamShopCSharp
                 return false;
             }
 
+          
             saveSales();
 
             deductStock();
 
-            helper.dimEnabled(false);
-
+            Helper.dimEnabled(false);
+         
             return true;
         }
 
@@ -165,7 +168,7 @@ namespace IceCreamShopCSharp
              {
                  
                  productService.code = listView.Items[i].SubItems[0].Text;
-                 var reader = productService.readProducts(ProductAction.GetStock);
+                 var reader = productService.read(ProductAction.GetStock);
 
                  var stock = 0;
 
@@ -177,7 +180,7 @@ namespace IceCreamShopCSharp
                  }
 
                  productService.stock = stock - int.Parse(listView.Items[i].SubItems[3].Text);
-                 productService.executeProducts(ProductAction.DeductStock);
+                 productService.execute(ProductAction.DeductStock);
              }
         }
 
@@ -186,7 +189,7 @@ namespace IceCreamShopCSharp
         {
             var description = "ORNo: " + orNum + "\nTotal: " + total + "\nCash: " + (total + change).ToString() + "\nChange: " + change;
 
-            helper.dimEnabled(true);
+            Helper.dimEnabled(true);
             var confirm = MessageBox.Show("Proceed? \n" + description, "Ice Cream Shop", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
            
             if (DialogResult.Yes == confirm)
@@ -195,7 +198,7 @@ namespace IceCreamShopCSharp
                 return false;
             }
 
-            helper.dimEnabled(false);
+            Helper.dimEnabled(false);
             return true;
         }
 
@@ -217,8 +220,9 @@ namespace IceCreamShopCSharp
                 quantity       = int.Parse(listView.Items[i].SubItems[3].Text);
                 subTotal       = double.Parse(listView.Items[i].SubItems[4].Text);
                 datePurchased  = currentDate;
-
-                executeSales(SalesAction.SaveSales);
+           
+                execute(SalesAction.SaveSales);
+            
             }
         }
 
@@ -311,7 +315,7 @@ namespace IceCreamShopCSharp
 
        private int getStock()
         {
-            var reader = productService.readProducts(ProductAction.GetStock);
+            var reader = productService.read(ProductAction.GetStock);
 
             reader.Read();
             if (reader.HasRows)

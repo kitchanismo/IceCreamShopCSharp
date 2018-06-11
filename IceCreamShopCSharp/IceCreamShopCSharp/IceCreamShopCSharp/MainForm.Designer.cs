@@ -63,6 +63,9 @@
             this.panelNavbar.Name = "panelNavbar";
             this.panelNavbar.Size = new System.Drawing.Size(1022, 76);
             this.panelNavbar.TabIndex = 0;
+            this.panelNavbar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseDown);
+            this.panelNavbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseMove);
+            this.panelNavbar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseUp);
             // 
             // accentbar
             // 

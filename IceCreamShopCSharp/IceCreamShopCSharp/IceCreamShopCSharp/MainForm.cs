@@ -38,7 +38,7 @@ namespace IceCreamShopCSharp
         //transition requirements
         private void InitializeTransition()
         {
-            transition.TabsArray(panelPOS, panelInventory, panelSales);
+            transition.TabArray(panelPOS, panelInventory, panelSales);
 
             transition.Speed = 600;
 
@@ -58,20 +58,16 @@ namespace IceCreamShopCSharp
             animation.AccentSpeed = 25;
             animation.ColorSpeed = 800;
             animation.Location = point;
-            animation.Target = accentbar;
             animation.Color = btn.BackColor;
 
-            animation.MoveAccentBar();
-            animation.ChangeBackColor();
-
-            animation.Target = panelWrapper;
-            animation.ChangeBackColor();
+            animation.MoveAccentBar(accentbar);
+            animation.ChangeBackColor(accentbar);
+            animation.ChangeBackColor(panelWrapper);
         }
 
         private void doTransition(Control active)
         {
-            transition.TabActive = active;
-            transition.Run();
+            transition.Run(active);
         }
 
         private void btnSales_Click(object sender, EventArgs e)
@@ -90,6 +86,21 @@ namespace IceCreamShopCSharp
         {
             doTransition(panelPOS);
             moveAccentBar(btnPOS);
+        }
+
+        private void panelNavbar_MouseUp(object sender, MouseEventArgs e)
+        {
+            animation.Release();
+        }
+
+        private void panelNavbar_MouseMove(object sender, MouseEventArgs e)
+        {
+            animation.Move(this);
+        }
+
+        private void panelNavbar_MouseDown(object sender, MouseEventArgs e)
+        {
+            animation.Grab(this);
         }
 
     

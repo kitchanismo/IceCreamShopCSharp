@@ -36,7 +36,7 @@ namespace IceCreamShopCSharp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            productService.searchKey = txtSearch.Text;
+            productService.searchKey = txtSearch.Text.ToLower() ;
             productService.search();
         }
 
@@ -53,7 +53,7 @@ namespace IceCreamShopCSharp
             } 
 
             salesService.addToCart();
-
+          
             displayTotal();
             displayItemsNo();
             displayChange(salesService);
@@ -84,15 +84,15 @@ namespace IceCreamShopCSharp
             salesService.cash          = double.Parse(txtCash.Text);
             salesService.change        = double.Parse(lblChange.Text);
             salesService.total         = double.Parse(lblTotal.Text);
-          
+
             if (salesService.hasPurchased())
             {
-                helper.dimEnabled(true);
+                Helper.dimEnabled(true);
                 MessageBox.Show("Successfully Purchased!", "Ice Cream Shop", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                helper.dimEnabled(false);
+                Helper.dimEnabled(false);
                 resetTransaction();
             }
-            
+        
         }
 
         private void txtCash_TextChanged(object sender, EventArgs e)
@@ -154,10 +154,10 @@ namespace IceCreamShopCSharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            helper.dimEnabled(true);
+            Helper.dimEnabled(true);
             if (lvCart.Items.Count == 0)
             {
-                helper.dimEnabled(false);
+                Helper.dimEnabled(false);
                 return;
             }
             
@@ -168,7 +168,7 @@ namespace IceCreamShopCSharp
                 resetTransaction();
             }
 
-            helper.dimEnabled(false);
+            Helper.dimEnabled(false);
 
         }
 

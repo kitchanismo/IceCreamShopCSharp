@@ -8,7 +8,8 @@ namespace IceCreamShopCSharp
 {
     class Helper
     {
-        transparentForm transparent = new transparentForm();
+        static transparentForm transparent = new transparentForm();
+
         kitchanismo.ListViewForeColor lvForeColor = new kitchanismo.ListViewForeColor();
 
         public void doChangeForeColor(ListView lv)
@@ -23,9 +24,9 @@ namespace IceCreamShopCSharp
             lvForeColor.changeListViewForeColor();
         }
 
-        public void dimEnabled(bool b)
+        public static void dimEnabled(bool b)
         {
-           
+          
             var x = MainForm.ActiveForm.DesktopLocation.X;
             var y = MainForm.ActiveForm.DesktopLocation.Y;
 

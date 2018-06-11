@@ -2,36 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using System.Data.OleDb;
 using System.Data;
-
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IceCreamShopCSharp
 {
-    class Database
+    class Database<T> 
     {
-        private OleDbConnection conn = new OleDbConnection();
-        private OleDbCommand command = new OleDbCommand();
-        private OleDbDataReader reader;
 
-        public string query { get; set; }
+        private IDbConnection _conn = new OleDbConnection();
+        private IDbCommand _cmd = new OleDbCommand();
+        private IDataReader _reader;
 
         private const string DATABASE_NAME = "icecream.mdb";
         private const string PROVIDER = "Microsoft.Jet.OLEDB.4.0";
         private const string DATA_SOURCE = "|DataDirectory|";
 
+        public string query { get; set; }
+
         public void Connected()
         {
             try
             {
-                if (conn.State == ConnectionState.Open)
+                if (_conn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    _conn.Close();
                 }
 
-                conn.ConnectionString = @"Provider=" + PROVIDER + ";Data Source=" + DATA_SOURCE + @"\" + DATABASE_NAME + ";";
-                conn.Open();
+                _conn.ConnectionString = @"Provider=" + PROVIDER + ";Data Source=" + DATA_SOURCE + @"\" + DATABASE_NAME + ";";
+                _conn.Open();
             }
             catch (Exception e)
             {
@@ -40,22 +42,24 @@ namespace IceCreamShopCSharp
 
         }
 
-        public OleDbDataReader CommandReader()
+        public T CommandReader()
         {
             Connected();
-            command.CommandText = query;
-            command.Connection = conn;
-            reader = command.ExecuteReader();
-            return reader;
+            _cmd.CommandText = query;
+            _cmd.Connection = _conn;
+
+            _reader = _cmd.ExecuteReader();
+            return (T)_reader;
         }
 
         public void CommandExecute()
         {
+           
             Connected();
-            command.CommandText = query;
-            command.Connection = conn;
-            command.ExecuteNonQuery();
-        
+            _cmd.CommandText = query;
+            _cmd.Connection = _conn;
+            _cmd.ExecuteNonQuery();
+          
         }
     }
 }

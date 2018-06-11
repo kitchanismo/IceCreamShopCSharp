@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.OleDb;    
 using kitchanismo;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace IceCreamShopCSharp
 {
@@ -19,47 +20,42 @@ namespace IceCreamShopCSharp
         public int       stock { get; set; }
         private DateTime datePurchased { get; set; }
 
-        private Database db = new Database();
+        private Database<OleDbDataReader> db = new Database<OleDbDataReader>();
+
+        private Dictionary<ProductAction, string> product = new Dictionary<ProductAction, string> { };
 
         //just return DataReader to Data Services
-        public OleDbDataReader readProducts(ProductAction productAction)
+        public OleDbDataReader read(ProductAction action)
         {
-           
-            switch (productAction)
-            {
-                case ProductAction.Load:
-                    db.query = loadQuery();
-                    break;
-                case ProductAction.Search:
-                    db.query = searchQuery();
-                    break;
-                case ProductAction.GetStock:
-                    db.query = getStockQuery();
-                    break;
-            }
+            product.Add(ProductAction.Load, loadQuery());
+            product.Add(ProductAction.Search, searchQuery());
+            product.Add(ProductAction.GetStock, getStockQuery());
+
+            db.query = product[action];
+            product.Clear();
+
             return db.CommandReader();
         }
 
-        public void executeProducts(ProductAction productAction)
+        public void execute(ProductAction action)
         {
-            switch (productAction)
-            {
-                case ProductAction.DeductStock:
-                    db.query = deductStockQuery();
-                    break;
-            }
+            product.Add(ProductAction.DeductStock, deductStockQuery());
+
+            db.query = product[action];
+            product.Clear();
+         // 
             db.CommandExecute();
+           
         }
 
         private string searchQuery()
         {
-            var key = "'%" + searchKey.ToLower() + "%'";
+            var key = "'%" + searchKey + "%'";
             return "select * from tblproducts where productName like " + key + " or productCode like " + key + " or productCategory like " + key + " order by id";
         }
 
         private string loadQuery()
         {
-         
             return "select * from tblproducts order by id";
         }
 

@@ -19,34 +19,27 @@ namespace IceCreamShopCSharp
         public double   cash { get; set; }
         public DateTime datePurchased { get; set; }
 
-        private Database db = new Database();
+        private Database<OleDbDataReader> db = new Database<OleDbDataReader>();
 
         //just return DataReader to Data Services
-        public OleDbDataReader readSales(SalesAction salesAction)
+      
+        private Dictionary<SalesAction, string> sales = new Dictionary<SalesAction, string> { };
+
+        public OleDbDataReader read(SalesAction action)
         {
-            switch (salesAction)
-            {
-                case SalesAction.ReadOR:
-                    db.query = readORQuery();
-                    break;
-                case SalesAction.SaveSales:
-                    db.query = saveSalesQuery();
-                    break;
-            }
+            sales.Add(SalesAction.ReadOR, readORQuery());
+
+            db.query = sales[action];
+            sales.Clear();
             return db.CommandReader();
         }
-
-        public void executeSales(SalesAction salesAction)
+        public void execute(SalesAction action)
         {
-            switch (salesAction)
-            {
-                case SalesAction.SaveSales:
-                    db.query = saveSalesQuery();
-                    break;
-            }
+            sales.Add(SalesAction.SaveSales, saveSalesQuery());
 
+            db.query = sales[action];
+            sales.Clear();
             db.CommandExecute();
-        
         }
 
         string readORQuery() 

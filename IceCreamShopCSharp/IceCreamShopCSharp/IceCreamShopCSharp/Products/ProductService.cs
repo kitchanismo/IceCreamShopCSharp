@@ -16,24 +16,14 @@ namespace IceCreamShopCSharp
 
         public void read()
         {
-           // var p = new Product();
-            var reader = readProducts(ProductAction.Load);
-            
+            var reader = read(ProductAction.Load);
             mapItems(reader);
-
-            //changing forecolor of listview
-            shared.doChangeForeColor(listView);
         }
      
         public void search()
         {
-            //var p = new Product();
-            var reader = readProducts(ProductAction.Search);
-          
+            var reader = read(ProductAction.Search);
             mapItems(reader);
-
-            shared.doChangeForeColor(listView);
-        
         }
 
         //map items from datareader into listview
@@ -54,6 +44,8 @@ namespace IceCreamShopCSharp
                     with_1.SubItems.Add(_reader[i].ToString());
                 }
             }
+
+            shared.doChangeForeColor(listView);
         }
     }
 }

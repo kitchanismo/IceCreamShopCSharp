@@ -147,10 +147,10 @@ namespace IceCreamShopCSharp
             inputBox.FormClosing += new System.Windows.Forms.FormClosingEventHandler(inputBox_FormClosing);
             label1.Text = title;
 
-            Helper shared = new Helper();
-            shared.dimEnabled(true);
+           
+            Helper.dimEnabled(true);
             DialogResult result = inputBox.ShowDialog();
-            shared.dimEnabled(false);
+            Helper.dimEnabled(false);
 
             return result;
         }
