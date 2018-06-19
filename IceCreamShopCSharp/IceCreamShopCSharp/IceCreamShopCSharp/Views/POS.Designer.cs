@@ -63,6 +63,8 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -177,6 +179,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.panel2);
@@ -436,6 +440,26 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "- Product List -";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label11.Location = new System.Drawing.Point(371, 77);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(162, 20);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "*Double Click to Add";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label12.Location = new System.Drawing.Point(796, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(193, 20);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "*Double Click to Remove";
+            // 
             // POS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -494,5 +518,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }

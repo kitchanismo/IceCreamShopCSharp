@@ -3,32 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.OleDb;
-using kitchanismo;
 using System.Drawing;
+using kitchanismo;
+using SqlHelper;
 using System.Threading.Tasks;
-
 namespace IceCreamShopCSharp
 {
     class SalesService : Sales
     {
-        Helper helper = new Helper();
-
+        Helper helper                 = new Helper();
+        IndexRow index                = new IndexRow();
         ProductService productService = new ProductService();
 
         public ListView listView { get; set; }
 
-        //SalesService salesService = new SalesService();
-        //quantity inputed validations 
-        //if input qty is valid then either update qty or add row
         public void addToCart()
         {
 
             if (stock <= 0)
             {
-                Helper.dimEnabled(true);
-                MessageBox.Show("Out of Stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Helper.dimEnabled(false);
+                Helper.Notification("Out of Stock!", Notify.Error);
                 return;
             }
 
@@ -43,27 +37,23 @@ namespace IceCreamShopCSharp
 
             if (stock < computedQty || inputedQuantity > computedQty)
             {
-                Helper.dimEnabled(true);
-                MessageBox.Show("There is no enough stock!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Helper.dimEnabled(false);
+                Helper.Notification("There is no enough stock!", Notify.Error);
                 return;
             }
 
-            double subTotal = price * inputedQuantity;
+            var subTotal = price * inputedQuantity;
 
             updateCartItem(inputedQuantity, subTotal);
         }
 
-        //minus quantity and subtotal into listview Cart 
+      
         public void removeToCart()
         {
             var inputedQuantity = getQtyFromInputBox("REMOVE QUANTITY");
 
             if (inputedQuantity > quantity)
             {
-                Helper.dimEnabled(true);
-                MessageBox.Show("Quantity remove is higher!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Helper.dimEnabled(false);
+                Helper.Notification("Quantity remove is higher!", Notify.Error);
                 return;
             }
 
@@ -72,21 +62,18 @@ namespace IceCreamShopCSharp
             updateCartItem(-inputedQuantity, -newSubtotal);
         }
 
-
         public string generateNewOR()
         {
-            var ORno = "";
-            var reader = read(SalesAction.ReadOR);
-            reader.Read();
-            try 
-	        {	        
-		         ORno = (int.Parse(reader[0].ToString().Substring(3)) + 1).ToString();
-                 return "OR-" + ORno; 
-	        }
-	        catch
-	        {
-		        return "OR-1000";
-	        } 
+            var ORno = 0;
+            try
+            {
+                ORno = int.Parse(GetMaxOR().Substring(3)) + 1;
+                return "OR-" + ORno;
+            }
+            catch
+            {
+                return "OR-1000";
+            } 
         }
 
         public double computeChange()
@@ -147,47 +134,30 @@ namespace IceCreamShopCSharp
             {
                 return false;
             }
-
-          
+        
+           
             saveSales();
+            mapStock();
 
-            deductStock();
-
-            Helper.dimEnabled(false);
-         
             return true;
         }
 
-        //private methods
-      
-
-        private void deductStock()
+        //private methods 
+ 
+        private void mapStock()
         {
-             var count = listView.Items.Count;
-             for (int i = 0; i < count; i++)
-             {
-                 
-                 productService.code = listView.Items[i].SubItems[0].Text;
-                 var reader = productService.read(ProductAction.GetStock);
-
-                 var stock = 0;
-
-                 reader.Read();
-
-                 if (reader.HasRows)
-                 {
-                     stock = int.Parse(reader[0].ToString());
-                 }
-
-                 productService.stock = stock - int.Parse(listView.Items[i].SubItems[3].Text);
-                 productService.execute(ProductAction.DeductStock);
-             }
+            var count = listView.Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                productService.code  = listView.Items[i].SubItems[0].Text;
+                productService.stock = productService.GetStock() - int.Parse(listView.Items[i].SubItems[3].Text);
+                productService.DeductStock();
+            }
         }
-
 
         private bool confirmProceed()
         {
-            var description = "ORNo: " + orNum + "\nTotal: " + total + "\nCash: " + (total + change).ToString() + "\nChange: " + change;
+            var description = "ORNo: " + ORno + "\nTotal: " + total + "\nCash: " + (total + change).ToString() + "\nChange: " + change;
 
             Helper.dimEnabled(true);
             var confirm = MessageBox.Show("Proceed? \n" + description, "Ice Cream Shop", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -214,15 +184,13 @@ namespace IceCreamShopCSharp
 
             for (int i = 0; i < count; i++)
             {
-                
-                code           = listView.Items[i].SubItems[0].Text;
-                price          = double.Parse(listView.Items[i].SubItems[2].Text);
-                quantity       = int.Parse(listView.Items[i].SubItems[3].Text);
-                subTotal       = double.Parse(listView.Items[i].SubItems[4].Text);
-                datePurchased  = currentDate;
-           
-                execute(SalesAction.SaveSales);
-            
+
+                code          = listView.Items[i].SubItems[0].Text;
+                price         = double.Parse(listView.Items[i].SubItems[2].Text);
+                quantity      = int.Parse(listView.Items[i].SubItems[3].Text);
+                subTotal      = double.Parse(listView.Items[i].SubItems[4].Text);
+                datePurchased = currentDate;
+                SaveSales();
             }
         }
 
@@ -230,7 +198,7 @@ namespace IceCreamShopCSharp
         private int getQtyFromInputBox(string title)
         {
             var inputBox = new CustomInputBox();
-            var description = "Product: " + name + "\nPrice: " + price;
+            var description = "Product: " + itemName + "\nPrice: " + price;
            
             inputBox.Show(1, description, title);
             return inputBox.quantity;
@@ -241,7 +209,7 @@ namespace IceCreamShopCSharp
         //get the sum of qty inputed and qty in cart list then return
         private int getQtyInCart(int _quantity)
         {
-            var index = new IndexRow();
+         
             index.Column = 1;
             index.ListView = listView;
             index.Key = code;
@@ -254,7 +222,7 @@ namespace IceCreamShopCSharp
             }
             else
             {
-                return stock;
+                return (int) stock;
             }
         }
 
@@ -287,7 +255,7 @@ namespace IceCreamShopCSharp
             {
                 string[] row = { 
                       code, 
-                      name, 
+                      itemName, 
                       price.ToString(),
                       _quantity.ToString(), 
                       _subTotal.ToString() 
@@ -311,21 +279,6 @@ namespace IceCreamShopCSharp
                 //txtCash.Text = "0.00";
             }
             return change;
-        }
-
-       private int getStock()
-        {
-            var reader = productService.read(ProductAction.GetStock);
-
-            reader.Read();
-            if (reader.HasRows)
-            {
-                return int.Parse(reader[0].ToString());
-            }
-            else
-            {
-                return 0;
-            }
         }
 
     }

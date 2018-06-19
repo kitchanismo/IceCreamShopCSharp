@@ -14,3 +14,5 @@ C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamS
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POS.resources
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SaleReport.resources
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Inventory.resources
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\SqlHelper.dll
+C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\SqlHelper.pdb

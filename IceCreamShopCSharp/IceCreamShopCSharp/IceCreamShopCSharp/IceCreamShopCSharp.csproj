@@ -40,6 +40,10 @@
     <Reference Include="kitchanRandomStuff">
       <HintPath>..\..\IceCreamShop\IceCreamShop\bin\Debug\kitchanRandomStuff.dll</HintPath>
     </Reference>
+    <Reference Include="SqlHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\MySqlOrmHelper-master\MySqlOrmHelper-master\testORM\testORM\bin\Debug\SqlHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -53,15 +57,15 @@
   <ItemGroup>
     <Compile Include="Connections\Database.cs" />
     <Compile Include="Helper\CustomInputBox.cs" />
-    <Compile Include="Sales\SalesService.cs" />
+    <Compile Include="BusinessLogic\SalesService.cs" />
     <Compile Include="Views\POS.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Products\ProductService.cs" />
-    <Compile Include="Products\Product.cs" />
+    <Compile Include="BusinessLogic\ProductService.cs" />
+    <Compile Include="DataAccess\Product.cs" />
     <Compile Include="Views\SaleReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,7 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Sales.cs" />
+    <Compile Include="DataAccess\Sales.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Helper\transparentForm.cs">
       <SubType>Form</SubType>

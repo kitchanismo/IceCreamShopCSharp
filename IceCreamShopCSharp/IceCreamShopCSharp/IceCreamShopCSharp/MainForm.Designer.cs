@@ -66,6 +66,10 @@
             this.panelNavbar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseDown);
             this.panelNavbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseMove);
             this.panelNavbar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseUp);
+
+            this.lblBrandName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseDown);
+            this.lblBrandName.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseMove);
+            this.lblBrandName.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelNavbar_MouseUp);
             // 
             // accentbar
             // 

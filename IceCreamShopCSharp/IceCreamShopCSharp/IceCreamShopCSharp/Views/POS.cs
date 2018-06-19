@@ -15,11 +15,10 @@ namespace IceCreamShopCSharp
         ProductService productService = new ProductService();
         SalesService salesService     = new SalesService();
         Helper helper                 = new Helper();
-
+      
         public POS()
         {
             InitializeComponent();
-            InitializeListView();
         }
 
         private void InitializeListView()
@@ -30,13 +29,16 @@ namespace IceCreamShopCSharp
 
         private void POSForm_Load(object sender, EventArgs e)
         {
+            InitializeListView();
             productService.read();
             lblOR.Text = salesService.generateNewOR();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            productService.searchKey = txtSearch.Text.ToLower() ;
+            productService.itemName = txtSearch.Text.ToLower();
+            productService.code     = txtSearch.Text.ToLower();
+            productService.category = txtSearch.Text.ToLower();
             productService.search();
         }
 
@@ -47,10 +49,10 @@ namespace IceCreamShopCSharp
             {
                 salesService.code     = item.SubItems[0].Text;
                 salesService.category = item.SubItems[1].Text;
-                salesService.name     = item.SubItems[2].Text;
+                salesService.itemName = item.SubItems[2].Text;
                 salesService.price    = double.Parse(item.SubItems[3].Text);
                 salesService.stock    = int.Parse(item.SubItems[4].Text);
-            } 
+            }
 
             salesService.addToCart();
           
@@ -64,7 +66,7 @@ namespace IceCreamShopCSharp
             foreach (ListViewItem item in lvCart.SelectedItems)
             {
                 salesService.code     = item.SubItems[0].Text;
-                salesService.name     = item.SubItems[1].Text;
+                salesService.itemName = item.SubItems[1].Text;
                 salesService.price    = double.Parse(item.SubItems[2].Text);
                 salesService.quantity = int.Parse(item.SubItems[3].Text);
             }
@@ -80,16 +82,14 @@ namespace IceCreamShopCSharp
         {
 
             salesService.customerName  = txtCustomer.Text;
-            salesService.orNum         = lblOR.Text;
+            salesService.ORno          = lblOR.Text;
             salesService.cash          = double.Parse(txtCash.Text);
             salesService.change        = double.Parse(lblChange.Text);
             salesService.total         = double.Parse(lblTotal.Text);
 
             if (salesService.hasPurchased())
             {
-                Helper.dimEnabled(true);
-                MessageBox.Show("Successfully Purchased!", "Ice Cream Shop", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Helper.dimEnabled(false);
+                Helper.Notification("Successfully Purchased!", Notify.Success);
                 resetTransaction();
             }
         
@@ -98,7 +98,7 @@ namespace IceCreamShopCSharp
         private void txtCash_TextChanged(object sender, EventArgs e)
         {
             salesService.total  = double.Parse(lblTotal.Text);
-            salesService.cash   = double.Parse(txtCash.Text);
+            salesService.cash = (txtCash.Text == "") ? 0 : double.Parse(txtCash.Text);
 
             lblChange.Text      = salesService.computeChange().ToString("N");
             txtCash.ForeColor   = salesService.changeCashForeColor();
@@ -122,7 +122,6 @@ namespace IceCreamShopCSharp
            lblOR.Text       = salesService.generateNewOR();
 
            lvCart.Items.Clear();
-          
            productService.read();
         }
 

@@ -56,35 +56,30 @@ namespace IceCreamShopCSharp
             point.X = btn.Location.X;
 
             animation.AccentSpeed = 25;
-            animation.ColorSpeed = 800;
-            animation.Location = point;
-            animation.Color = btn.BackColor;
+            animation.ColorSpeed  = 800;
+            animation.Location    = point;
+            animation.Color       = btn.BackColor;
 
             animation.MoveAccentBar(accentbar);
             animation.ChangeBackColor(accentbar);
             animation.ChangeBackColor(panelWrapper);
         }
 
-        private void doTransition(Control active)
-        {
-            transition.Run(active);
-        }
-
         private void btnSales_Click(object sender, EventArgs e)
         {
-            doTransition(panelSales);
+            transition.Run(panelSales);
             moveAccentBar(btnSales);
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            doTransition(panelInventory);
+            transition.Run(panelInventory);
             moveAccentBar(btnInventory);
         }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
-            doTransition(panelPOS);
+            transition.Run(panelPOS);
             moveAccentBar(btnPOS);
         }
 

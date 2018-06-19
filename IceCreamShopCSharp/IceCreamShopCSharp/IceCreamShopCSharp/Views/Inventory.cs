@@ -12,8 +12,6 @@ namespace IceCreamShopCSharp
     public partial class Inventory : UserControl
     {
 
-        ProductService productService = new ProductService();
-
         public Inventory()
         {
             InitializeComponent();
@@ -21,8 +19,7 @@ namespace IceCreamShopCSharp
 
         private void POSForm_Load(object sender, EventArgs e)
         {
-            productService.listView = lvProduct;
-            productService.read();
+          
         }
     }
 }

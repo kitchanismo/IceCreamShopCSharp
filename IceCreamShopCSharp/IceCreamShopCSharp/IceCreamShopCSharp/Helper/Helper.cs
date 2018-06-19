@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+
 namespace IceCreamShopCSharp
 {
     class Helper
@@ -22,6 +23,24 @@ namespace IceCreamShopCSharp
             lvForeColor.ColorDanger = Color.Crimson;
 
             lvForeColor.changeListViewForeColor();
+        }
+
+        public static void Notification(string message, Notify notify)
+        {
+            Helper.dimEnabled(true);
+            if (Notify.Success == notify)
+            {
+                MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (Notify.Question== notify)
+            {
+                MessageBox.Show(message, "Question", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            else if (Notify.Error == notify)
+            {
+                MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           Helper.dimEnabled(false);
         }
 
         public static void dimEnabled(bool b)
@@ -103,5 +122,12 @@ namespace IceCreamShopCSharp
         }
 
         
+    }
+
+    enum Notify
+    {
+        Success,
+        Error,
+        Question
     }
 }
