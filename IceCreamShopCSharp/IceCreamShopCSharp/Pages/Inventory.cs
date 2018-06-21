@@ -11,7 +11,7 @@ namespace IceCreamShopCSharp
 {
     public partial class Inventory : UserControl
     {
-        ProductService productService = new ProductService();
+        ProductService productService = new ProductService(new Product());
 
         public Inventory()
         {
@@ -20,11 +20,10 @@ namespace IceCreamShopCSharp
             productService.hasAction = true;
         }
 
+    
         private void POSForm_Load(object sender, EventArgs e)
         {
             productService.read();
-
-         
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -37,13 +36,10 @@ namespace IceCreamShopCSharp
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             productService.itemName = txtSearch.Text.ToLower();
-            productService.code     = txtSearch.Text.ToLower();
+            productService.code = txtSearch.Text.ToLower();
             productService.category = txtSearch.Text.ToLower();
-
             productService.search();
-
         }
-
 
         private void lvProduct_MouseMove(object sender, MouseEventArgs e)
         {

@@ -11,11 +11,13 @@ namespace IceCreamShopCSharp
 {
     public partial class POS : UserControl
     {
+        //IProduct _product = new Product();
 
-        ProductService productService = new ProductService();
-        SalesService salesService     = new SalesService();
+        ProductService productService = new ProductService(new Product());
+
+        SalesService salesService = new SalesService(new Product());
         Helper helper                 = new Helper();
-      
+
         public POS()
         {
             InitializeComponent();
@@ -133,7 +135,7 @@ namespace IceCreamShopCSharp
 
         private void displayChange(SalesService _salesService)
         {
-            var change = double.Parse(txtCash.Text) - double.Parse(lblTotal.Text);
+            var change = (txtCash.Text == "") ? 0 : double.Parse(txtCash.Text) - double.Parse(lblTotal.Text);
 
             if (change < 0 || double.Parse(lblTotal.Text) == 0)
             {

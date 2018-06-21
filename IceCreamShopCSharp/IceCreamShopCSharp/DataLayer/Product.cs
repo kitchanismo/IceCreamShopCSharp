@@ -8,14 +8,14 @@ using SqlHelper;
 
 namespace IceCreamShopCSharp
 {
-    class Product
+    class Product : IProduct
     {
         public string    code { get; set; }
         public string    category { get; set; }
         public string    itemName { get; set; }
         public double    price { get; set; }
         public double    stock { get; set; }
-        protected DateTime datePurchased { get; set; }
+        public DateTime  datePurchased { get; set; }
 
         CRUD crud = new CRUD(Database.Connection());
 

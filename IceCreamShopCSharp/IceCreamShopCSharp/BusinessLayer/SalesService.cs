@@ -13,9 +13,15 @@ namespace IceCreamShopCSharp
     {
         Helper helper                 = new Helper();
         IndexRow index                = new IndexRow();
-        ProductService productService = new ProductService();
+        
+        IProduct _product;
 
         public ListView listView { get; set; }
+
+        public SalesService(IProduct product)
+        {
+            _product = product;
+        }
 
         public void addToCart()
         {
@@ -149,9 +155,9 @@ namespace IceCreamShopCSharp
             var count = listView.Items.Count;
             for (int i = 0; i < count; i++)
             {
-                productService.code  = listView.Items[i].SubItems[0].Text;
-                productService.stock = productService.GetStock() - int.Parse(listView.Items[i].SubItems[3].Text);
-                productService.DeductStock();
+                _product.code = listView.Items[i].SubItems[0].Text;
+                _product.stock = _product.GetStock() - int.Parse(listView.Items[i].SubItems[3].Text);
+                _product.DeductStock();
             }
         }
 

@@ -8,22 +8,30 @@ using System.Drawing;
 
 namespace IceCreamShopCSharp
 {
-    class ProductService: Product 
+    class ProductService : Product
     {
         Helper helper = new Helper();
+        IProduct _product;
 
         public ListView listView { get; set; }
-
         public bool hasAction { get; set; }
+
+        public ProductService(IProduct product)
+        {
+            _product = product;
+        }
 
         public void read()
         {
-            addToListView(GetProducts());
+            addToListView(_product.GetProducts());
         }
      
         public void search()
         {
-            addToListView(GetSearchProducts());
+            _product.category = category;
+            _product.code     = code;
+            _product.itemName = itemName;
+            addToListView(_product.GetSearchProducts());
         }
 
         private void addToListView(List<Product> products)
@@ -62,11 +70,15 @@ namespace IceCreamShopCSharp
         {
             //validations
             var date = new DateTime();
-            var currentDate = DateTime.Parse(date.TimeOfDay.ToString());
-            datePurchased = currentDate;
-            SaveProduct();
-            Helper.dimEnabled(true);
-            Helper.Notification("Save Product!", Notify.Success);
+         
+            _product.code          = code;
+            _product.itemName      = itemName;
+            _product.category      = category;
+            _product.price         = price;
+            _product.stock         = stock;
+            _product.datePurchased = DateTime.Parse(date.TimeOfDay.ToString());;
+            _product.SaveProduct();
+            MessageBox.Show("Save Product!");
         }
 
         private void changeToColumnColor(int ColumnIndex, Color color)

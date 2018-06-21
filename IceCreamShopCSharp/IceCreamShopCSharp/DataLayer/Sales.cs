@@ -15,7 +15,6 @@ namespace IceCreamShopCSharp
         public double   change { get; set; }
         public int      quantity { get; set; }
         public double   cash { get; set; }
-        public DateTime datePurchased { get; set; }
 
         CRUD crud = new CRUD(Database.Connection());
 

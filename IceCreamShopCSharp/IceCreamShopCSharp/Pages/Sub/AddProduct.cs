@@ -41,7 +41,7 @@ namespace IceCreamShopCSharp
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var productService      = new ProductService();
+            var productService      = new ProductService(new Product());
             productService.code     = txtCode.Text;
             productService.category = cboCategory.Text;
             productService.itemName = txtName.Text;
