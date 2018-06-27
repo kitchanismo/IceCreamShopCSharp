@@ -11,3 +11,23 @@ C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamS
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
 C:\Users\Betsayda\Desktop\clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.AddProduct.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.exe
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.exe
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\IceCreamShopCSharp.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csprojResolveAssemblyReference.cache
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.AddProduct.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.POS.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.SaleReport.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Inventory.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.MainForm.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.Properties.Resources.resources
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.csproj.GenerateResource.Cache
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\KitchanismoDInjector.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\DataAccessLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\MiddleLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\DataAccessLayer.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\MiddleLayer.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\SqlHelper.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\bin\Debug\kitchanRandomStuff.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\IceCreamShopCSharp\obj\Debug\IceCreamShopCSharp.transparentForm.resources

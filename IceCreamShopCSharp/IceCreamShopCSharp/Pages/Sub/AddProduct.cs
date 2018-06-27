@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Kitchanismo;
+using MiddleLayer;
+using DataAccessLayer;
 
 namespace IceCreamShopCSharp
 {
     public partial class AddProduct : Form
     {
         KitchanismoAnimation animation = new KitchanismoAnimation();
-
+        IProductService productService = new ProductService();
+               
         public AddProduct()
         {
             InitializeComponent();
@@ -41,14 +44,15 @@ namespace IceCreamShopCSharp
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            var productService      = new ProductService(new Product());
-            productService.code     = txtCode.Text;
-            productService.category = cboCategory.Text;
-            productService.itemName = txtName.Text;
-            productService.price    = double.Parse(txtPrice.Text);
-            productService.stock    = int.Parse(txtStock.Text);
-            productService.Insert();
-           
+            IProduct product = new Product();
+                product.code = txtCode.Text;
+                product.category = cboCategory.Text;
+                product.itemName = txtName.Text;
+                product.price = double.Parse(txtPrice.Text);
+                product.stock = int.Parse(txtStock.Text);
+
+                productService.Insert(product);
+                MessageBox.Show("Save Product!");
         }
     }
 }

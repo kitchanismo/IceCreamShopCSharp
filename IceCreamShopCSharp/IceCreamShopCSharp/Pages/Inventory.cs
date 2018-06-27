@@ -6,44 +6,49 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MiddleLayer;
+using DataAccessLayer;
 
 namespace IceCreamShopCSharp
 {
     public partial class Inventory : UserControl
     {
-        ProductService productService = new ProductService(new Product());
 
+        IProductService productService;
+        IProduct product;
+ 
         public Inventory()
         {
             InitializeComponent();
-            productService.listView = lvProduct;
-            productService.hasAction = true;
+            productService = KitchanismoDInjector.Container.Resolve<ProductService>();
+            product        = KitchanismoDInjector.Container.Resolve<Product>();
         }
 
-    
         private void POSForm_Load(object sender, EventArgs e)
         {
-            productService.read();
+            productService.listView = lvProduct;
+            productService.hasAction = true;
+            productService.Read(product);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
-            productService.read();
-
+            productService.Read(product);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            productService.itemName = txtSearch.Text.ToLower();
-            productService.code = txtSearch.Text.ToLower();
-            productService.category = txtSearch.Text.ToLower();
-            productService.search();
+            product.itemName = txtSearch.Text.ToLower();
+            product.code     = txtSearch.Text.ToLower();
+            product.category = txtSearch.Text.ToLower();
+           
+            productService.Search(product);
         }
 
         private void lvProduct_MouseMove(object sender, MouseEventArgs e)
         {
-            productService.changeMouseCursor(e);
+            productService.ChangeMouseCursor(e);
         }
 
         private void lvProduct_MouseUp(object sender, MouseEventArgs e)
@@ -54,9 +59,14 @@ namespace IceCreamShopCSharp
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             var addForm = new AddProduct();
-            Helper.dimEnabled(true);
+           // Helper.dimEnabled(true);
             addForm.ShowDialog();
-            Helper.dimEnabled(false);
+            //Helper.dimEnabled(false);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
     }

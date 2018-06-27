@@ -1,0 +1,5 @@
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\DataAccessLayer\bin\Debug\SqlHelper.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

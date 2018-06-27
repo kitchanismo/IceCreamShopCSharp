@@ -37,12 +37,9 @@
     <Reference Include="Kitchanismo">
       <HintPath>..\..\..\..\..\transition\testsample\test\bin\Debug\Kitchanismo.dll</HintPath>
     </Reference>
-    <Reference Include="kitchanRandomStuff">
-      <HintPath>..\..\IceCreamShop\IceCreamShop\bin\Debug\kitchanRandomStuff.dll</HintPath>
-    </Reference>
-    <Reference Include="SqlHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="KitchanismoDInjector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\MySqlOrmHelper-master\MySqlOrmHelper-master\testORM\testORM\bin\Debug\SqlHelper.dll</HintPath>
+      <HintPath>bin\Debug\KitchanismoDInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,24 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLayer\IProduct.cs" />
+    <Compile Include="Other\Helper.cs" />
     <Compile Include="Pages\Sub\AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pages\Sub\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connections\Database.cs" />
-    <Compile Include="Helper\CustomInputBox.cs" />
-    <Compile Include="BusinessLayer\SalesService.cs" />
     <Compile Include="Pages\POS.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\POS.Designer.cs">
       <DependentUpon>POS.cs</DependentUpon>
     </Compile>
-    <Compile Include="BusinessLayer\ProductService.cs" />
-    <Compile Include="DataLayer\Product.cs" />
     <Compile Include="Pages\SaleReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,13 +90,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="DataLayer\Sales.cs" />
-    <Compile Include="Helper\Helper.cs" />
-    <Compile Include="Helper\transparentForm.cs">
+    <Compile Include="Other\TransparentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helper\transparentForm.Designer.cs">
-      <DependentUpon>transparentForm.cs</DependentUpon>
+    <Compile Include="Other\TransparentForm.Designer.cs">
+      <DependentUpon>TransparentForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +117,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helper\transparentForm.resx">
-      <DependentUpon>transparentForm.cs</DependentUpon>
+    <EmbeddedResource Include="Other\TransparentForm.resx">
+      <DependentUpon>TransparentForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{14133A25-6D46-465A-9A97-9F00231B4155}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiddleLayer\MiddleLayer.csproj">
+      <Project>{1D043CED-97D0-4CB0-8C37-1E3CF6D64CA9}</Project>
+      <Name>MiddleLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

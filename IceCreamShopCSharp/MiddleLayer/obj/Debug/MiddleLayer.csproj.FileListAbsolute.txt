@@ -1,0 +1,9 @@
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\obj\Debug\MiddleLayer.csprojResolveAssemblyReference.cache
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\MiddleLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\MiddleLayer.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\kitchanRandomStuff.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\SqlHelper.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\obj\Debug\MiddleLayer.dll
+C:\Users\Betsayda\Desktop\git clones\IceCreamShopCSharp\IceCreamShopCSharp\MiddleLayer\obj\Debug\MiddleLayer.pdb
