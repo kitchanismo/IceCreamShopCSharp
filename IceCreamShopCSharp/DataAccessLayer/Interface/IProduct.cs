@@ -7,15 +7,15 @@ namespace DataAccessLayer
 {
     public interface IProduct
     {
-        string code { get; set; }
-        string category { get; set; }
-        string itemName { get; set; }
-        double price { get; set; }
-        double stock { get; set; }
-        DateTime datePurchased { get; set; }
+        string Code { get; set; }
+        string Category { get; set; }
+        string ItemName { get; set; }
+        double Price { get; set; }
+        double Stock { get; set; }
+        DateTime DatePurchased { get; set; }
         List<Product> GetSearchProducts();
         List<Product> GetProducts();
-        void SaveProduct();
+        void Save();
         void DeductStock();
         int GetStock();
     }

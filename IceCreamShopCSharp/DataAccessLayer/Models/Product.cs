@@ -10,12 +10,12 @@ namespace DataAccessLayer
 {
     public class Product : IProduct
     {
-        public string    code { get; set; }
-        public string    category { get; set; }
-        public string    itemName { get; set; }
-        public double    price { get; set; }
-        public double    stock { get; set; }
-        public DateTime  datePurchased { get; set; }
+        public string    Code { get; set; }
+        public string    Category { get; set; }
+        public string    ItemName { get; set; }
+        public double    Price { get; set; }
+        public double    Stock { get; set; }
+        public DateTime  DatePurchased { get; set; }
 
         CRUD crud = new CRUD(Database.Connection());
 
@@ -24,16 +24,16 @@ namespace DataAccessLayer
             return crud.Query<Product>("select * from product");
         }
 
-        public void SaveProduct()
+        public virtual void Save()
         {
             var sql = "insert into product (code,category,itemName,price,stock,datePurchased) values (@code,@category,@itemName,@price,@stock,@datePurchased)";
             var parameters = new Dictionary<string, object>();
-            parameters.Add("@code", code);
-            parameters.Add("@category", category);
-            parameters.Add("@itemName", itemName);
-            parameters.Add("@price", price);
-            parameters.Add("@stock", stock);
-            parameters.Add("@datePurchased", datePurchased);
+            parameters.Add("@code", Code);
+            parameters.Add("@category", Category);
+            parameters.Add("@itemName", ItemName);
+            parameters.Add("@price", Price);
+            parameters.Add("@stock", Stock);
+            parameters.Add("@datePurchased", DatePurchased);
 
             crud.Query<Product>(sql, parameters);
         }
@@ -41,9 +41,9 @@ namespace DataAccessLayer
         public List<Product> GetSearchProducts()
         {
             var searchKeys = new Dictionary<string, object>();
-                searchKeys.Add("code",     "%" + code + "%");
-                searchKeys.Add("category", "%" + category + "%");
-                searchKeys.Add("itemName", "%" + itemName + "%");
+                searchKeys.Add("code",     "%" + Code + "%");
+                searchKeys.Add("category", "%" + Category + "%");
+                searchKeys.Add("itemName", "%" + ItemName + "%");
 
             return crud.GetAll<Product>(searchKeys);
         }
@@ -52,20 +52,22 @@ namespace DataAccessLayer
         {
             var sql = "update product SET stock = @stock where code = @code";
             var parameters = new Dictionary<string, object>();
-                parameters.Add("@stock", stock);
-                parameters.Add("@code",  code);
+                parameters.Add("@stock", Stock);
+                parameters.Add("@code",  Code);
             crud.Query<Product>(sql, parameters);
         }
         
         public  int GetStock()
         {
             var findKey = new Dictionary<string, object>();
-            findKey.Add("code", code);
+            findKey.Add("code", Code);
 
             Product product = crud.GetOne<Product>(findKey);
-            return (int) product.stock;
+            return (int) product.Stock;
         }
 
+
+        
     }
 
 }

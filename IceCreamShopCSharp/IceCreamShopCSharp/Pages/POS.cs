@@ -45,9 +45,9 @@ namespace IceCreamShopCSharp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            product.itemName = txtSearch.Text.ToLower();
-            product.code     = txtSearch.Text.ToLower();
-            product.category = txtSearch.Text.ToLower();
+            product.ItemName = txtSearch.Text.ToLower();
+            product.Code     = txtSearch.Text.ToLower();
+            product.Category = txtSearch.Text.ToLower();
             productService.Search(product);
         }
 
@@ -57,11 +57,11 @@ namespace IceCreamShopCSharp
             {
                 foreach (ListViewItem item in lvProduct.SelectedItems)
                 {
-                    sales.code     = item.SubItems[0].Text;
-                    sales.category = item.SubItems[1].Text;
-                    sales.itemName = item.SubItems[2].Text;
-                    sales.price    = double.Parse(item.SubItems[3].Text);
-                    sales.stock    = int.Parse(item.SubItems[4].Text);
+                    sales.Code     = item.SubItems[0].Text;
+                    sales.Category = item.SubItems[1].Text;
+                    sales.ItemName = item.SubItems[2].Text;
+                    sales.Price    = double.Parse(item.SubItems[3].Text);
+                    sales.Stock    = int.Parse(item.SubItems[4].Text);
                 }
 
                 Helper.dimEnabled(true);
@@ -85,10 +85,10 @@ namespace IceCreamShopCSharp
             {
                 foreach (ListViewItem item in lvCart.SelectedItems)
                 {
-                    sales.code     = item.SubItems[0].Text;
-                    sales.itemName = item.SubItems[1].Text;
-                    sales.price    = double.Parse(item.SubItems[2].Text);
-                    sales.quantity = int.Parse(item.SubItems[3].Text);
+                    sales.Code     = item.SubItems[0].Text;
+                    sales.ItemName = item.SubItems[1].Text;
+                    sales.Price    = double.Parse(item.SubItems[2].Text);
+                    sales.Quantity = int.Parse(item.SubItems[3].Text);
                 }
 
                  Helper.dimEnabled(true);
@@ -135,11 +135,11 @@ namespace IceCreamShopCSharp
                 return;
             }
 
-            sales.customerName  = txtCustomer.Text;
+            sales.CustomerName  = txtCustomer.Text;
             sales.ORno          = lblOR.Text;
-            sales.cash          = double.Parse(txtCash.Text);
-            sales.change        = double.Parse(lblChange.Text);
-            sales.total         = double.Parse(lblTotal.Text);
+            sales.Cash          = double.Parse(txtCash.Text);
+            sales.Change        = double.Parse(lblChange.Text);
+            sales.Total         = double.Parse(lblTotal.Text);
 
             if (salesService.HasPurchased(sales))
             {
@@ -150,8 +150,8 @@ namespace IceCreamShopCSharp
 
         private void txtCash_TextChanged(object sender, EventArgs e)
         {
-            sales.total         = double.Parse(lblTotal.Text);
-            sales.cash          = (txtCash.Text == "") ? 0 : double.Parse(txtCash.Text);
+            sales.Total         = double.Parse(lblTotal.Text);
+            sales.Cash          = (txtCash.Text == "") ? 0 : double.Parse(txtCash.Text);
             lblChange.Text      = salesService.ComputeChange().ToString("N");
             txtCash.ForeColor   = salesService.ChangeCashForeColor();
             btnPurchase.Enabled = Helper.isEnabled(txtCash.ForeColor);

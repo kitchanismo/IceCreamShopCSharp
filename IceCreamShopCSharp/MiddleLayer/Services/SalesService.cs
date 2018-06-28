@@ -19,7 +19,7 @@ namespace MiddleLayer
         {
             _sales = sales;
 
-            if (_sales.stock <= 0)
+            if (_sales.Stock <= 0)
             {
                 throw new Exception("Out of Stock!");
             }
@@ -33,12 +33,12 @@ namespace MiddleLayer
 
             var computedQty = getQtyInCart(inputedQuantity);
 
-            if (_sales.stock < computedQty || inputedQuantity > computedQty)
+            if (_sales.Stock < computedQty || inputedQuantity > computedQty)
             {
                 throw new Exception("There is no enough stock!");
             }
 
-            var subTotal = _sales.price * inputedQuantity;
+            var subTotal = _sales.Price * inputedQuantity;
 
             updateCartItem(inputedQuantity, subTotal);
         }
@@ -50,12 +50,12 @@ namespace MiddleLayer
 
             var inputedQuantity = getQtyFromInputBox("REMOVE QUANTITY");
 
-            if (inputedQuantity > _sales.quantity)
+            if (inputedQuantity > _sales.Quantity)
             {
                 throw new Exception("Quantity remove is higher!");
             }
 
-            var newSubtotal = inputedQuantity * _sales.price;
+            var newSubtotal = inputedQuantity * _sales.Price;
 
             updateCartItem(-inputedQuantity, -newSubtotal);
         }
@@ -77,7 +77,7 @@ namespace MiddleLayer
 
         public double ComputeChange()
         {
-            string[] inputs = { _sales.cash.ToString(), _sales.total.ToString() };
+            string[] inputs = { _sales.Cash.ToString(), _sales.Total.ToString() };
 
             if (isEmpty(inputs))
             {
@@ -85,8 +85,8 @@ namespace MiddleLayer
                 return 0.00;
             }
 
-            var _total = double.Parse(_sales.total.ToString());
-            var _cash = double.Parse(_sales.cash.ToString());
+            var _total = double.Parse(_sales.Total.ToString());
+            var _cash = double.Parse(_sales.Cash.ToString());
 
             if (_total > _cash || _total == 0)
             {
@@ -101,15 +101,15 @@ namespace MiddleLayer
 
         public Color ChangeCashForeColor()
         {
-            string[] inputs = { _sales.cash.ToString(), _sales.total.ToString() };
+            string[] inputs = { _sales.Cash.ToString(), _sales.Total.ToString() };
             
             if (isEmpty(inputs))
             {
                 return Color.Crimson;
             }
 
-            var _total = double.Parse(_sales.total.ToString());
-            var _cash = double.Parse(_sales.cash.ToString());
+            var _total = double.Parse(_sales.Total.ToString());
+            var _cash = double.Parse(_sales.Cash.ToString());
 
             if (_total > _cash)
             {
@@ -160,8 +160,8 @@ namespace MiddleLayer
             var count = listView.Items.Count;
             for (int i = 0; i < count; i++)
             {
-                _sales.code = listView.Items[i].SubItems[0].Text;
-                _sales.stock = _sales.GetStock() - int.Parse(listView.Items[i].SubItems[3].Text);
+                _sales.Code = listView.Items[i].SubItems[0].Text;
+                _sales.Stock = _sales.GetStock() - int.Parse(listView.Items[i].SubItems[3].Text);
                 _sales.DeductStock();
             }
         }
@@ -175,19 +175,19 @@ namespace MiddleLayer
             var count = listView.Items.Count; 
             for (int i = 0; i < count; i++)
             {
-                _sales.code          = listView.Items[i].SubItems[0].Text;
-                _sales.price         = double.Parse(listView.Items[i].SubItems[2].Text);
-                _sales.quantity      = int.Parse(listView.Items[i].SubItems[3].Text);
-                _sales.subTotal      = double.Parse(listView.Items[i].SubItems[4].Text);
-                _sales.datePurchased = currentDate;
-                _sales.SaveSales();
+                _sales.Code          = listView.Items[i].SubItems[0].Text;
+                _sales.Price         = double.Parse(listView.Items[i].SubItems[2].Text);
+                _sales.Quantity      = int.Parse(listView.Items[i].SubItems[3].Text);
+                _sales.SubTotal      = double.Parse(listView.Items[i].SubItems[4].Text);
+                _sales.DatePurchased = currentDate;
+                _sales.Save();
             }
         }
 
         private int getQtyFromInputBox(string title)
         {
             CustomInputBox _inputBox = new CustomInputBox();
-            var description = "Product: " + _sales.itemName + "\nPrice: " + _sales.price;
+            var description = "Product: " + _sales.ItemName + "\nPrice: " + _sales.Price;
             _inputBox.Show(1, description, title);
             return _inputBox.quantity;
         }
@@ -195,7 +195,7 @@ namespace MiddleLayer
 
         private int getQtyInCart(int _quantity)
         {
-            var i = getListIndex(0, _sales.code);
+            var i = getListIndex(0, _sales.Code);
 
             if (i != -1)
             {
@@ -204,7 +204,7 @@ namespace MiddleLayer
             }
             else
             {
-                return (int)_sales.stock;
+                return (int)_sales.Stock;
             }
         }
 
@@ -224,7 +224,7 @@ namespace MiddleLayer
 
         private void updateCartItem(int _quantity, double _subTotal)
         {
-            var i = getListIndex(0, _sales.code);
+            var i = getListIndex(0, _sales.Code);
 
             if (i != -1)
             {
@@ -242,9 +242,9 @@ namespace MiddleLayer
             else
             {
                 string[] row = { 
-                      _sales.code, 
-                      _sales.itemName, 
-                      _sales.price.ToString(),
+                      _sales.Code, 
+                      _sales.ItemName, 
+                      _sales.Price.ToString(),
                       _quantity.ToString(), 
                       _subTotal.ToString() 
                 };
@@ -259,9 +259,9 @@ namespace MiddleLayer
 
         private double getChange()
         {
-            var change = double.Parse(_sales.cash.ToString()) - double.Parse(_sales.total.ToString());
+            var change = double.Parse(_sales.Cash.ToString()) - double.Parse(_sales.Total.ToString());
 
-            if (change < 0 || double.Parse(_sales.total.ToString()) == 0)
+            if (change < 0 || double.Parse(_sales.Total.ToString()) == 0)
             {
                 return 0;
             }

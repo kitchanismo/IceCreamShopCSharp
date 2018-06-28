@@ -45,11 +45,11 @@ namespace IceCreamShopCSharp
         private void BtnSave_Click(object sender, EventArgs e)
         {
             IProduct product = new Product();
-                product.code = txtCode.Text;
-                product.category = cboCategory.Text;
-                product.itemName = txtName.Text;
-                product.price = double.Parse(txtPrice.Text);
-                product.stock = int.Parse(txtStock.Text);
+                product.Code = txtCode.Text;
+                product.Category = cboCategory.Text;
+                product.ItemName = txtName.Text;
+                product.Price = double.Parse(txtPrice.Text);
+                product.Stock = int.Parse(txtStock.Text);
 
                 productService.Insert(product);
                 MessageBox.Show("Save Product!");

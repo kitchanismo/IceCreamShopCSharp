@@ -39,9 +39,9 @@ namespace IceCreamShopCSharp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            product.itemName = txtSearch.Text.ToLower();
-            product.code     = txtSearch.Text.ToLower();
-            product.category = txtSearch.Text.ToLower();
+            product.ItemName = txtSearch.Text.ToLower();
+            product.Code     = txtSearch.Text.ToLower();
+            product.Category = txtSearch.Text.ToLower();
            
             productService.Search(product);
         }
@@ -59,9 +59,9 @@ namespace IceCreamShopCSharp
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             var addForm = new AddProduct();
-           // Helper.dimEnabled(true);
+            Helper.dimEnabled(true);
             addForm.ShowDialog();
-            //Helper.dimEnabled(false);
+            Helper.dimEnabled(false);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

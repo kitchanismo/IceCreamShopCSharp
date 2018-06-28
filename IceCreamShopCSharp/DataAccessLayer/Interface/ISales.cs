@@ -8,14 +8,12 @@ namespace DataAccessLayer
     public interface ISales : IProduct
     {
         string ORno { get; set; }
-        string customerName { get; set; }
-        double subTotal { get; set; }
-        double total { get; set; }
-        double change { get; set; }
-        int quantity { get; set; }
-        double cash { get; set; }
-
-        void SaveSales();
+        string CustomerName { get; set; }
+        double SubTotal { get; set; }
+        double Total { get; set; }
+        double Change { get; set; }
+        int Quantity { get; set; }
+        double Cash { get; set; }
         string GetMaxOR();
     }
 }

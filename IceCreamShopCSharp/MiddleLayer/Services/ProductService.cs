@@ -36,8 +36,8 @@ namespace MiddleLayer
             _product = product;
             //validations
             var date = new DateTime();
-            _product.datePurchased = DateTime.Parse(date.TimeOfDay.ToString());;
-            _product.SaveProduct();
+            _product.DatePurchased = DateTime.Parse(date.TimeOfDay.ToString());;
+            _product.Save();
         }
 
         public void ClickAction(MouseEventArgs e)
@@ -79,12 +79,12 @@ namespace MiddleLayer
 
             for (int i = 0; i < products.Count; i++)
             {
-                var item = listView.Items.Add(products[i].code);
+                var item = listView.Items.Add(products[i].Code);
 
-                item.SubItems.Add(products[i].category);
-                item.SubItems.Add(products[i].itemName);
-                item.SubItems.Add(products[i].price.ToString());
-                item.SubItems.Add(products[i].stock.ToString());
+                item.SubItems.Add(products[i].Category);
+                item.SubItems.Add(products[i].ItemName);
+                item.SubItems.Add(products[i].Price.ToString());
+                item.SubItems.Add(products[i].Stock.ToString());
                 if (hasAction == true)
                 {
                     item.SubItems.Add("Edit");

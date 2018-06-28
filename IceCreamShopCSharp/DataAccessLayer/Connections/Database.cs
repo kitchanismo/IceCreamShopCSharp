@@ -14,7 +14,8 @@ namespace DataAccessLayer
     {
         public static IDbConnection Connection()
         {
-            return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icecreamdb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
+            return new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\icecream.mdb;");
+           // return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\icecreamdb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
         }
     }
 }
